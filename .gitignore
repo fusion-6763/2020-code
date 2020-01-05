@@ -5,7 +5,6 @@
 .project
 .classpath
 /build
-/gradle
 
 # Compiled class file
 *.class
