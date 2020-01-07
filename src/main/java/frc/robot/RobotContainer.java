@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import static frc.robot.Constants.ControllerConstants.driverPort;
+import static frc.robot.Constants.ControllerConstants.shooterPort;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -21,6 +23,9 @@ import edu.wpi.first.wpilibj2.command.Command;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private final XboxController driverController = new XboxController(driverPort);
+  private final XboxController shooterController = new XboxController(shooterPort);
+
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
 

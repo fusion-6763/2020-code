@@ -34,4 +34,9 @@ public final class Constants {
         public static final double encoderDistancePerPulse = (wheelDiameter * Math.PI)
                 / (double) encoderCountsPerRotation;
     }
+
+    public static final class ControllerConstants {
+        public static final int driverPort = 0;
+        public static final int shooterPort = 1;
+    }
 }
