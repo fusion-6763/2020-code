@@ -19,24 +19,22 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int leftMotorPort1 = 0;
-        public static final int leftMotorPort2 = 1;
-        public static final int rightMotorPort1 = 2;
-        public static final int rightMotorPort2 = 3;
+        public static final int LEFT_MOTOR_PORT = 0;
+        public static final int RIGHT_MOTOR_PORT = 2;
 
-        public static final int[] leftEncoderPorts = { 0, 1 };
-        public static final int[] rightEncoderPorts = { 2, 3 };
-        public static final boolean leftEncoderReversed = false;
-        public static final boolean rightEncoderReversed = true;
+        public static final int[] LEFT_ENCODER_PORTS = { 0, 1 };
+        public static final int[] RIGHT_ENCODER_PORTS = { 2, 3 };
+        public static final boolean LEFT_ENCODER_REVERSED = false;
+        public static final boolean RIGHT_ENCODER_REVERSED = true;
 
-        public static final int encoderCountsPerRotation = 1024;
-        public static final double wheelDiameter = 6;
-        public static final double encoderDistancePerPulse = (wheelDiameter * Math.PI)
-                / (double) encoderCountsPerRotation;
+        public static final int ENCODER_COUNTS_PER_ROTATION = 1024;
+        public static final double WHEEL_DIAMETER = 6;
+        public static final double ENCODER_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
+                / (double) ENCODER_COUNTS_PER_ROTATION;
     }
 
     public static final class ControllerConstants {
-        public static final int driverPort = 0;
-        public static final int shooterPort = 1;
+        public static final int DRIVER_PORT = 0;
+        public static final int SHOOTER_PORT = 1;
     }
 }
