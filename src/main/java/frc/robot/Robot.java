@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Teleop;
+import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.Joystick;
+
+import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,7 +26,7 @@ import frc.robot.commands.Teleop;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  Teleop teleopCommand = new Teleop();
+  Teleop teleopCommand = new Teleop(new DriveTrain(), new Joystick(DRIVER_PORT));
 
   /**
    * This function is run when the robot is first started up and should be used

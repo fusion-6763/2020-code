@@ -10,17 +10,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
-import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;;
 
 public class Teleop extends CommandBase {
-  Joystick driveStick = new Joystick(DRIVER_PORT);
-  DriveTrain myRobot = new DriveTrain();
+  Joystick driveStick;
+  DriveTrain myRobot;
 
   /**
    * Creates a new Teleop.
    */
-  public Teleop() {
+  public Teleop(DriveTrain _driveTrain, Joystick _driveStick) {
     // Use addRequirements() here to declare subsystem dependencies.
+    myRobot = _driveTrain;
+    driveStick = _driveStick;
+
     addRequirements(myRobot);
   }
 
