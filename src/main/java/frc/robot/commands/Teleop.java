@@ -10,10 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
-import static frc.robot.Constants.ControllerConstants.driverPort;
+import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;;
 
 public class Teleop extends CommandBase {
-  Joystick driveStick = new Joystick(driverPort);
+  Joystick driveStick = new Joystick(DRIVER_PORT);
   DriveTrain myRobot = new DriveTrain();
 
   /**

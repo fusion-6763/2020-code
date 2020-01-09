@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Spark;
 
-import frc.robot.Constants;
+import static frc.robot.Constants.DriveConstants.LEFT_MOTOR_PORT;
+import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT;;
 
 public class DriveTrain extends SubsystemBase {
-  public Spark leftMotor = new Spark(Constants.DriveConstants.leftMotorPort1);
-  public Spark rightMotor = new Spark(Constants.DriveConstants.rightMotorPort1);
+  public Spark leftMotor = new Spark(LEFT_MOTOR_PORT);
+  public Spark rightMotor = new Spark(RIGHT_MOTOR_PORT);
 
   DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 
