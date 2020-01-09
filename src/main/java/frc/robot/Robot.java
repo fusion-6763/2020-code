@@ -14,6 +14,8 @@ import frc.robot.commands.Teleop;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Joystick;
 
+import frc.robot.automodes.*;
+
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 
 /**
@@ -26,7 +28,9 @@ import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  Teleop teleopCommand = new Teleop(new DriveTrain(), new Joystick(DRIVER_PORT));
+  DriveTrain driveTrain = new DriveTrain();
+
+  Teleop teleopCommand = new Teleop(driveTrain, new Joystick(DRIVER_PORT));
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -77,7 +81,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    
+    new TestAuto(driveTrain).schedule();
   }
 
   /**

@@ -10,9 +10,16 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Encoder;
 
 import static frc.robot.Constants.DriveConstants.LEFT_MOTOR_PORT;
-import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT;;
+import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT;
+
+import static frc.robot.Constants.DriveConstants.LEFT_ENCODER_PORTS;
+import static frc.robot.Constants.DriveConstants.RIGHT_ENCODER_PORTS;
+
+import static frc.robot.Constants.DriveConstants.LEFT_ENCODER_REVERSED;
+import static frc.robot.Constants.DriveConstants.RIGHT_ENCODER_REVERSED;
 
 public class DriveTrain extends SubsystemBase {
   public Spark leftMotor = new Spark(LEFT_MOTOR_PORT);
@@ -20,14 +27,38 @@ public class DriveTrain extends SubsystemBase {
 
   DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
 
+  Encoder leftEncoder = new Encoder(LEFT_ENCODER_PORTS[0], LEFT_ENCODER_PORTS[1]);
+  Encoder rightEncoder = new Encoder(RIGHT_ENCODER_PORTS[0], RIGHT_ENCODER_PORTS[1]);
+
   /**
    * Creates a new DriveTrain.
    */
   public DriveTrain() {
+    leftEncoder.setReverseDirection(LEFT_ENCODER_REVERSED);
+    rightEncoder.setReverseDirection(RIGHT_ENCODER_REVERSED);
+
+    leftEncoder.reset();
+    rightEncoder.reset();
   }
 
-  public void drive(Double speed, Double rotationSpeed){
+  public void drive(double speed, double rotationSpeed){
     myRobot.arcadeDrive(speed, rotationSpeed);
+  }
+
+  public int getLeftEncoder(){
+    return leftEncoder.get();
+  }
+  public int getRightEncoder(){
+    return rightEncoder.get();
+  }
+
+  public void resetEncoders(boolean left, boolean right){
+    if(left){
+      leftEncoder.reset();
+    }
+    if(right){
+      rightEncoder.reset();
+    }
   }
 
   @Override
