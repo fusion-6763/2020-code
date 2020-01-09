@@ -4,9 +4,11 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Spark;
 
+import static frc.robot.Constants.DriveConstants.SHOOTER_PORT;
+
 public class Shooter extends SubsystemBase{
   //The spark that operates the motor.
-  private final Spark motor = new Spark(1);
+  private final Spark motor = new Spark(SHOOTER_PORT);
 
   //Launches that ball at full speed forwards.
   public void OutputBall(){

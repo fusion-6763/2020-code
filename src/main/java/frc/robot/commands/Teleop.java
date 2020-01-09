@@ -21,7 +21,7 @@ public class Teleop extends CommandBase {
    */
   public Teleop() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(new DriveTrain());
+    addRequirements(myRobot);
   }
 
   // Called when the command is initially scheduled.
