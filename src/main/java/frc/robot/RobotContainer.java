@@ -60,7 +60,7 @@ public class RobotContainer {
     return m_driveCommand;
   }
 
-  public Command getTeleopCommand(){
+  public Command getTeleopCommand() {
     return new Teleop(m_driveTrain, driverController);
   }
 }

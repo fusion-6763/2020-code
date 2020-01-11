@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveForward;
 import frc.robot.subsystems.DriveTrain;
 
-import static frc.robot.Constants.DriveConstants.ENCODER_COUNTS_PER_ROTATION;
-
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
