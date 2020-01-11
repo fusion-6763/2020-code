@@ -4,5 +4,6 @@
     "java.completion.enabled": true,
     "java.completion.maxResults": 50,
     "java.signatureHelp.enabled": true,
-    "java.format.enabled": true
+    "java.format.enabled": true,
+    "editor.formatOnSave": true
 }
