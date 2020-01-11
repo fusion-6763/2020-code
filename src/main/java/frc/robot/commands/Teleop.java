@@ -9,16 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class Teleop extends CommandBase {
-  Joystick driveStick;
+  XboxController driveStick;
   DriveTrain myRobot;
 
   /**
    * Creates a new Teleop.
    */
-  public Teleop(DriveTrain _driveTrain, Joystick _driveStick) {
+  public Teleop(DriveTrain _driveTrain, XboxController _driveStick) {
     // Use addRequirements() here to declare subsystem dependencies.
     myRobot = _driveTrain;
     driveStick = _driveStick;

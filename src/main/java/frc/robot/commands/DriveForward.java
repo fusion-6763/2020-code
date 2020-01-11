@@ -10,18 +10,28 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class DriveForward extends CommandBase {
   DriveTrain driveTrain;
-  double distance;
+  Mode mode;
+  double value;
   double speed;
+
+  Timer timer;
 
   /**
    * Creates a new DriveForward.
    */
-  public DriveForward(DriveTrain _driveTrain, double _distance, double _speed) {
+  public DriveForward(DriveTrain _driveTrain, Mode _mode, double _value, double _speed) {
     driveTrain = _driveTrain;
-    distance = _distance;
+    value = _value;
     speed = _speed;
+    mode = _mode;
+
+    if (mode == Mode.TIME) {
+      timer = new Timer();
+    }
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
@@ -30,7 +40,11 @@ public class DriveForward extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    driveTrain.resetEncoders(true, true);
+    if (mode == Mode.TIME) {
+      timer.start();
+    } else if (mode == Mode.DISTANCE) {
+      driveTrain.resetEncoders(true, true);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -48,10 +62,16 @@ public class DriveForward extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (driveTrain.getLeftEncoder() >= distance) {
+    if (mode == Mode.DISTANCE && driveTrain.getLeftEncoder() >= value) {
+      return true;
+    } else if (mode == Mode.TIME && timer.get() >= value) {
       return true;
     } else {
       return false;
     }
+  }
+
+  public enum Mode {
+    TIME, DISTANCE
   }
 }
