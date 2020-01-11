@@ -18,7 +18,7 @@ public class Teleop extends CommandBase {
   /**
    * Creates a new Teleop.
    */
-  public Teleop(DriveTrain _driveTrain, XboxController _driveStick) {
+  public Teleop(final DriveTrain _driveTrain, final XboxController _driveStick) {
     // Use addRequirements() here to declare subsystem dependencies.
     myRobot = _driveTrain;
     driveStick = _driveStick;

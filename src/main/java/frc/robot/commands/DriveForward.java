@@ -22,7 +22,7 @@ public class DriveForward extends CommandBase {
   /**
    * Creates a new DriveForward.
    */
-  public DriveForward(DriveTrain _driveTrain, Mode _mode, double _value, double _speed) {
+  public DriveForward(final DriveTrain _driveTrain, final Mode _mode, final double _value, double _speed) {
     driveTrain = _driveTrain;
     value = _value;
     speed = _speed;

@@ -7,10 +7,10 @@
 
 package frc.robot.commands;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
-
-import com.kauailabs.navx.frc.AHRS;
 
 public class TurnToAngle extends CommandBase {
   private DriveTrain _driveTrain;
@@ -21,7 +21,7 @@ public class TurnToAngle extends CommandBase {
   /**
    * Creates a new TurnToAngle.
    */
-  public TurnToAngle(DriveTrain driveTrain, AHRS navx, double angle, double speed) {
+  public TurnToAngle(final DriveTrain driveTrain, final AHRS navx, final double angle, final double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     _driveTrain = driveTrain;
