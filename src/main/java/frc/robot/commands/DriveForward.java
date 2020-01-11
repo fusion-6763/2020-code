@@ -48,10 +48,9 @@ public class DriveForward extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(driveTrain.getLeftEncoder() >= distance){
+    if (driveTrain.getLeftEncoder() >= distance) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
