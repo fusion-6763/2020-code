@@ -23,6 +23,6 @@ public class TestAuto extends SequentialCommandGroup {
   public TestAuto(DriveTrain driveTrain) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new DriveForward(driveTrain, ENCODER_COUNTS_PER_ROTATION * 10, 0.6));
+    super(new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6));
   }
 }
