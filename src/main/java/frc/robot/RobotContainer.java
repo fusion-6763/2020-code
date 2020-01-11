@@ -17,6 +17,9 @@ import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
 import frc.robot.subsystems.DriveTrain;
 
+import edu.wpi.first.wpilibj.SPI;
+import com.kauailabs.navx.frc.AHRS;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -30,8 +33,9 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
+  private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
 
-  private final TestAuto m_driveCommand = new TestAuto(m_driveTrain);
+  private final TestAuto m_driveCommand = new TestAuto(m_driveTrain, m_navx);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

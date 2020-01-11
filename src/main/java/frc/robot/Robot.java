@@ -91,6 +91,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    myRobot.getTeleopCommand().schedule();
   }
 
   /**
@@ -98,7 +100,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    myRobot.getTeleopCommand().schedule();
+
   }
 
   @Override
