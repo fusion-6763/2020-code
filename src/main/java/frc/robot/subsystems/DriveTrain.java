@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
     rightEncoder.reset();
   }
 
-  public void drive(double speed, double rotationSpeed) {
+  public void drive(final double speed, final double rotationSpeed) {
     myRobot.arcadeDrive(speed, rotationSpeed);
   }
 
@@ -51,7 +51,7 @@ public class DriveTrain extends SubsystemBase {
     return rightEncoder.get();
   }
 
-  public void resetEncoders(boolean left, boolean right) {
+  public void resetEncoders(final boolean left, final boolean right) {
     if (left) {
       leftEncoder.reset();
     }
