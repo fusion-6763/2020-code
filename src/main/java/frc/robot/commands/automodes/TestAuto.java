@@ -25,6 +25,7 @@ public class TestAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, navx, 180, 0.6),
+        new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, navx, 180, 0.6),
         new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6));
   }
 }

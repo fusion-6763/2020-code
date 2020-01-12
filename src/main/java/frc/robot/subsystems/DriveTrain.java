@@ -60,6 +60,10 @@ public class DriveTrain extends SubsystemBase {
     }
   }
 
+  public void stop() {
+    myRobot.stopMotor();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
