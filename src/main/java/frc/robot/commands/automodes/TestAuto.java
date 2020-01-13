@@ -10,7 +10,8 @@ package frc.robot.commands.automodes;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.DriveForward;
+import frc.robot.commands.DriveStraight;
+import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.TurnToAngle;
 import frc.robot.subsystems.DriveTrain;
 
@@ -25,8 +26,8 @@ public class TestAuto extends SequentialCommandGroup {
   public TestAuto(final DriveTrain driveTrain, final AHRS navx) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, navx, 180, 0.6),
-        new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, navx, 180, 0.6),
-        new DriveForward(driveTrain, DriveForward.Mode.TIME, 2, 0.6));
+    super(new DriveStraight(driveTrain, Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, navx, 180, 0.6),
+        new DriveStraight(driveTrain, Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, navx, 180, 0.6),
+        new DriveStraight(driveTrain, Mode.TIME, 2, 0.6));
   }
 }
