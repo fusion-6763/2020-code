@@ -51,6 +51,10 @@ public class DriveTrain extends SubsystemBase {
     return rightEncoder.get();
   }
 
+  public int getEncoders() {
+    return Math.round((getLeftEncoder() + getRightEncoder()) / 2);
+  }
+
   public void resetEncoders(final boolean left, final boolean right) {
     if (left) {
       leftEncoder.reset();
