@@ -10,11 +10,6 @@ public class BallIntake extends SubsystemBase {
   // The spark that operates the motor.
   private final Spark motor = new Spark(SHOOTER_PORT);
 
-  // Launches that ball at full speed forwards.
-  public void OutputBall() {
-    motor.set(1);
-  };
-
   // Inputs the ball a full speed backwards.
   public void InputBall() {
     motor.set(-1);
