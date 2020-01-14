@@ -9,6 +9,7 @@
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
     "editor.trimAutoWhitespace": true,
+    "editor.lineNumbers": "on",
     "wpilib.autoSaveOnDeploy": true,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 60000

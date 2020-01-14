@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.Intake;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
 import frc.robot.subsystems.DriveTrain;
@@ -30,6 +32,8 @@ import frc.robot.subsystems.DriveTrain;
 public class RobotContainer {
   private final XboxController driverController = new XboxController(DRIVER_PORT);
   private final XboxController shooterController = new XboxController(SHOOTER_PORT);
+  final JoystickButton leftShooterBumper = new JoystickButton(shooterController,
+      XboxController.Button.kBumperLeft.value);
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
@@ -52,6 +56,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    leftShooterBumper.whenHeld(new Intake());
   }
 
   /**
