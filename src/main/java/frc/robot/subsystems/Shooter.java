@@ -10,12 +10,12 @@ public class Shooter extends SubsystemBase {
   private final Spark motor = new Spark(SHOOTER_PORT);
 
   // Launches that ball at full speed forwards.
-  public void OutputBall() {
+  public void outputBall() {
     motor.set(1);
   };
 
   // Stops spinning the motor.
-  public void Neutral() {
+  public void neutral() {
     motor.set(0);
   }
 

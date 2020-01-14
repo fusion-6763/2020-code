@@ -21,8 +21,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -39,6 +40,9 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
+  private final BallIntake m_ballIntake = new BallIntake();
+  private final Shooter m_shooter = new Shooter();
+
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
 
   private final TestAuto m_driveCommand = new TestAuto(m_driveTrain, m_navx);
@@ -51,6 +55,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveTrain.setDefaultCommand(new InstantCommand(m_driveTrain::stop));
+    m_ballIntake.setDefaultCommand(new InstantCommand(m_ballIntake::neutral));
+    m_shooter.setDefaultCommand(new InstantCommand(m_shooter::neutral));
   }
 
   /**
