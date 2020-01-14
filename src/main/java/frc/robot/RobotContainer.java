@@ -49,9 +49,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    m_driveTrain.setDefaultCommand(new InstantCommand(() -> {
-      m_driveTrain.stop();
-    }));
+    m_driveTrain.setDefaultCommand(new InstantCommand(m_driveTrain::stop));
   }
 
   /**
