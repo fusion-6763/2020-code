@@ -13,6 +13,8 @@ public class Intake extends CommandBase {
     _time = time;
     _timer = new Timer();
     _ballIntake = ballIntake;
+
+    addRequirements(ballIntake);
   }
 
   // Called when the command is initially scheduled.
