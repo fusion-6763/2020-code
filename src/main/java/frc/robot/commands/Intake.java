@@ -9,7 +9,7 @@ public class Intake extends CommandBase {
   Timer _timer;
   BallIntake _ballIntake;
 
-  public void intake(final BallIntake ballIntake, final Double time) {
+  public Intake(final BallIntake ballIntake, final Double time) {
     _time = time;
     _timer = new Timer();
     _ballIntake = ballIntake;
