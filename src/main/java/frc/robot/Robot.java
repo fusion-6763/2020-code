@@ -33,9 +33,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
-    
-    //BallIntake.setDefaultCommand();
-  }
+}
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for

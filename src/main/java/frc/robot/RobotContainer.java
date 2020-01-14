@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.BallIntake;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -30,6 +31,7 @@ import frc.robot.subsystems.DriveTrain;
 public class RobotContainer {
   private final XboxController driverController = new XboxController(DRIVER_PORT);
   private final XboxController shooterController = new XboxController(SHOOTER_PORT);
+  private final BallIntake ballIntake = new BallIntake();
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();

@@ -2,16 +2,19 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Intake extends CommandBase {
   double _time;
   Timer _timer;
-  BallIntake _ballIntake = new BallIntake();
+  BallIntake _ballIntake;
 
-  public void intake(final Double time) {
+  public void intake(final BallIntake ballIntake, final Double time) {
     _time = time;
     _timer = new Timer();
+    _ballIntake = ballIntake;
+    _ballIntake.setDefaultCommand(neutral);
   }
 
   // Called when the command is initially scheduled.
