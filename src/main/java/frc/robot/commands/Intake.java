@@ -14,7 +14,6 @@ public class Intake extends CommandBase {
     _time = time;
     _timer = new Timer();
     _ballIntake = ballIntake;
-    _ballIntake.setDefaultCommand(neutral);
   }
 
   // Called when the command is initially scheduled.
