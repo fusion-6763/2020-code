@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class BallIntake extends SubsystemBase {
   // The spark that operates the motor.
   private final Spark motor = new Spark(SHOOTER_PORT);
-
   // Inputs the ball a full speed backwards.
   public void inputBall() {
     motor.set(-1);

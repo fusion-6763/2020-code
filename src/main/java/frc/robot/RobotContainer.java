@@ -22,6 +22,7 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.BallIntake;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
