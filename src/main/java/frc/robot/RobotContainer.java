@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Teleop;
@@ -53,10 +52,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-
-    m_driveTrain.setDefaultCommand(new InstantCommand(m_driveTrain::stop));
-    m_ballIntake.setDefaultCommand(new InstantCommand(m_ballIntake::neutral));
-    m_shooter.setDefaultCommand(new InstantCommand(m_shooter::neutral));
   }
 
   /**
