@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.util.ColorShim;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants. This class should not be used for any other
@@ -38,5 +41,12 @@ public final class Constants {
     public static final class ControllerConstants {
         public static final int DRIVER_PORT = 0;
         public static final int SHOOTER_PORT = 1;
+    }
+
+    public static final class WheelColors {
+        public static final Color BLUE = new ColorShim(0.143, 0.427, 0.429);
+        public static final Color GREEN = new ColorShim(0.197, 0.561, 0.240);
+        public static final Color RED = new ColorShim(0.561, 0.232, 0.114);
+        public static final Color YELLOW = new ColorShim(0.361, 0.524, 0.113);
     }
 }
