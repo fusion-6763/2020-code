@@ -20,7 +20,7 @@ public class Intake extends CommandBase {
 
   @Override
   public void execute() {
-    ballIntake.InputBall();
+    ballIntake.inputBall();
   }
 
   // Called once the command ends or is interrupted.
