@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class DriveForward extends CommandBase {
+public class DriveStraight extends CommandBase {
   DriveTrain driveTrain;
   Mode mode;
   double value;
@@ -20,9 +20,9 @@ public class DriveForward extends CommandBase {
   Timer timer;
 
   /**
-   * Creates a new DriveForward.
+   * Creates a new DriveStraight.
    */
-  public DriveForward(final DriveTrain _driveTrain, final Mode _mode, final double _value, double _speed) {
+  public DriveStraight(final DriveTrain _driveTrain, final Mode _mode, final double _value, double _speed) {
     driveTrain = _driveTrain;
     value = _value;
     speed = _speed;

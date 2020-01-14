@@ -11,12 +11,17 @@ public class BallIntake extends SubsystemBase {
   private final Spark motor = new Spark(SHOOTER_PORT);
 
   // Inputs the ball a full speed backwards.
-  public void InputBall() {
+  public void inputBall() {
     motor.set(-1);
   };
 
   // Stops spinning the motor.
-  public void Neutral() {
+  public void neutral() {
     motor.set(0);
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
   }
 }
