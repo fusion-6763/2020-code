@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.DriveConstants.SHOOTER_PORT1;
+import static frc.robot.Constants.ShooterConstants.SHOOTER_PORT1;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.InstantCommand;

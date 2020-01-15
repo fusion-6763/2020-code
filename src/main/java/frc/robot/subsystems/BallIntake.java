@@ -1,8 +1,8 @@
 //Operates the robot motors that control the ball-shooting mechanism. 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.DriveConstants.INTAKE_PORT1;
-import static frc.robot.Constants.DriveConstants.INTAKE_PORT2;
+import static frc.robot.Constants.IntakeConstants.INTAKE_PORT1;
+import static frc.robot.Constants.IntakeConstants.INTAKE_PORT2;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.InstantCommand;

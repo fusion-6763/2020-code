@@ -25,11 +25,6 @@ public final class Constants {
         public static final int LEFT_MOTOR_PORT = 0;
         public static final int RIGHT_MOTOR_PORT = 2;
 
-        public static final int INTAKE_PORT1 = 3;
-        public static final int INTAKE_PORT2 = 4;
-
-        public static final int SHOOTER_PORT1 = 5;
-
         public static final int[] LEFT_ENCODER_PORTS = { 0, 1 };
         public static final int[] RIGHT_ENCODER_PORTS = { 2, 3 };
         public static final boolean LEFT_ENCODER_REVERSED = false;
@@ -39,6 +34,15 @@ public final class Constants {
         public static final double WHEEL_DIAMETER = 6;
         public static final double ENCODER_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
                 / (double) ENCODER_COUNTS_PER_ROTATION;
+    }
+
+    public static final class IntakeConstants {
+        public static final int INTAKE_PORT1 = 3;
+        public static final int INTAKE_PORT2 = 4;
+    }
+
+    public static final class ShooterConstants {
+        public static final int SHOOTER_PORT1 = 5;
     }
 
     public static final class ControllerConstants {
