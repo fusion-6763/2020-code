@@ -12,18 +12,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
 public class Teleop extends CommandBase {
-  XboxController driveStick;
-  DriveTrain myRobot;
+  private XboxController _driveStick;
+  private DriveTrain _myRobot;
 
   /**
    * Creates a new Teleop.
    */
-  public Teleop(final DriveTrain _driveTrain, final XboxController _driveStick) {
+  public Teleop(final DriveTrain driveTrain, final XboxController driveStick) {
     // Use addRequirements() here to declare subsystem dependencies.
-    myRobot = _driveTrain;
-    driveStick = _driveStick;
+    _myRobot = driveTrain;
+    _driveStick = driveStick;
 
-    addRequirements(myRobot);
+    addRequirements(_myRobot);
   }
 
   // Called when the command is initially scheduled.
@@ -34,7 +34,7 @@ public class Teleop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    myRobot.drive(-driveStick.getRawAxis(1), driveStick.getRawAxis(0));
+    _myRobot.drive(-_driveStick.getRawAxis(1), _driveStick.getRawAxis(0));
   }
 
   // Called once the command ends or is interrupted.

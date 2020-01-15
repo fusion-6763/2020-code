@@ -32,19 +32,19 @@ import frc.robot.subsystems.Shooter;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  private final XboxController driverController = new XboxController(DRIVER_PORT);
-  private final XboxController shooterController = new XboxController(SHOOTER_PORT);
-  final JoystickButton leftShooterBumper = new JoystickButton(shooterController,
+  private final XboxController _driverController = new XboxController(DRIVER_PORT);
+  private final XboxController _shooterController = new XboxController(SHOOTER_PORT);
+  private final JoystickButton _leftShooterBumper = new JoystickButton(_shooterController,
       XboxController.Button.kBumperLeft.value);
 
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain m_driveTrain = new DriveTrain();
-  private final BallIntake m_ballIntake = new BallIntake();
-  private final Shooter m_shooter = new Shooter();
+  private final DriveTrain _driveTrain = new DriveTrain();
+  private final BallIntake _ballIntake = new BallIntake();
+  private final Shooter _shooter = new Shooter();
 
-  private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
+  private final AHRS _navx = new AHRS(SPI.Port.kMXP);
 
-  private final TestAuto m_driveCommand = new TestAuto(m_driveTrain, m_navx);
+  private final TestAuto _driveCommand = new TestAuto(_driveTrain, _navx);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -61,7 +61,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    leftShooterBumper.whenHeld(new Intake(m_ballIntake, 2.0).perpetually());
+    _leftShooterBumper.whenHeld(new Intake(_ballIntake, 2.0).perpetually());
   }
 
   /**
@@ -70,12 +70,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    // return m_driveCommand;
-    return m_driveCommand;
+    return _driveCommand;
   }
 
   public Command getTeleopCommand() {
-    return new Teleop(m_driveTrain, driverController);
+    return new Teleop(_driveTrain, _driverController);
   }
 }

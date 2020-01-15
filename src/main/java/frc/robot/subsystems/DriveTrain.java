@@ -21,37 +21,37 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  public Spark leftMotor = new Spark(LEFT_MOTOR_PORT);
-  public Spark rightMotor = new Spark(RIGHT_MOTOR_PORT);
+  private Spark _leftMotor = new Spark(LEFT_MOTOR_PORT);
+  private Spark _rightMotor = new Spark(RIGHT_MOTOR_PORT);
 
-  DifferentialDrive myRobot = new DifferentialDrive(leftMotor, rightMotor);
+  private DifferentialDrive _myRobot = new DifferentialDrive(_leftMotor, _rightMotor);
 
-  Encoder leftEncoder = new Encoder(LEFT_ENCODER_PORTS[0], LEFT_ENCODER_PORTS[1]);
-  Encoder rightEncoder = new Encoder(RIGHT_ENCODER_PORTS[0], RIGHT_ENCODER_PORTS[1]);
+  private Encoder _leftEncoder = new Encoder(LEFT_ENCODER_PORTS[0], LEFT_ENCODER_PORTS[1]);
+  private Encoder _rightEncoder = new Encoder(RIGHT_ENCODER_PORTS[0], RIGHT_ENCODER_PORTS[1]);
 
   /**
    * Creates a new DriveTrain.
    */
   public DriveTrain() {
-    leftEncoder.setReverseDirection(LEFT_ENCODER_REVERSED);
-    rightEncoder.setReverseDirection(RIGHT_ENCODER_REVERSED);
+    _leftEncoder.setReverseDirection(LEFT_ENCODER_REVERSED);
+    _rightEncoder.setReverseDirection(RIGHT_ENCODER_REVERSED);
 
-    leftEncoder.reset();
-    rightEncoder.reset();
+    _leftEncoder.reset();
+    _rightEncoder.reset();
 
     setDefaultCommand(new InstantCommand(this::stop));
   }
 
   public void drive(final double speed, final double rotationSpeed) {
-    myRobot.arcadeDrive(speed, rotationSpeed);
+    _myRobot.arcadeDrive(speed, rotationSpeed);
   }
 
   public int getLeftEncoder() {
-    return leftEncoder.get();
+    return _leftEncoder.get();
   }
 
   public int getRightEncoder() {
-    return rightEncoder.get();
+    return _rightEncoder.get();
   }
 
   public int getEncoders() {
@@ -60,15 +60,15 @@ public class DriveTrain extends SubsystemBase {
 
   public void resetEncoders(final boolean left, final boolean right) {
     if (left) {
-      leftEncoder.reset();
+      _leftEncoder.reset();
     }
     if (right) {
-      rightEncoder.reset();
+      _rightEncoder.reset();
     }
   }
 
   public void stop() {
-    myRobot.stopMotor();
+    _myRobot.stopMotor();
   }
 
   @Override

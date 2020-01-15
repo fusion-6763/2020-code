@@ -12,24 +12,24 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveStraight extends CommandBase {
-  DriveTrain driveTrain;
-  Mode mode;
-  double value;
-  double speed;
+  private DriveTrain _driveTrain;
+  private Mode _mode;
+  private double _limit;
+  private double _speed;
 
-  Timer timer;
+  private Timer _timer;
 
   /**
    * Creates a new DriveStraight.
    */
-  public DriveStraight(final DriveTrain _driveTrain, final Mode _mode, final double _value, double _speed) {
-    driveTrain = _driveTrain;
-    value = _value;
-    speed = _speed;
-    mode = _mode;
+  public DriveStraight(final DriveTrain driveTrain, final Mode mode, final double limit, double speed) {
+    _driveTrain = driveTrain;
+    _mode = mode;
+    _limit = limit;
+    _speed = speed;
 
     if (mode == Mode.TIME) {
-      timer = new Timer();
+      _timer = new Timer();
     }
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -39,17 +39,17 @@ public class DriveStraight extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (mode == Mode.TIME) {
-      timer.start();
-    } else if (mode == Mode.DISTANCE) {
-      driveTrain.resetEncoders(true, true);
+    if (_mode == Mode.TIME) {
+      _timer.start();
+    } else if (_mode == Mode.DISTANCE) {
+      _driveTrain.resetEncoders(true, true);
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.drive(speed, 0.0);
+    _driveTrain.drive(_speed, 0.0);
     System.out.println("Run");
   }
 
@@ -61,9 +61,9 @@ public class DriveStraight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (mode == Mode.DISTANCE && driveTrain.getEncoders() >= value) {
+    if (_mode == Mode.DISTANCE && _driveTrain.getEncoders() >= _limit) {
       return true;
-    } else if (mode == Mode.TIME && timer.get() >= value) {
+    } else if (_mode == Mode.TIME && _timer.get() >= _limit) {
       return true;
     } else {
       return false;
