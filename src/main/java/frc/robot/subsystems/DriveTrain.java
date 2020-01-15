@@ -17,6 +17,7 @@ import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
@@ -37,6 +38,8 @@ public class DriveTrain extends SubsystemBase {
 
     leftEncoder.reset();
     rightEncoder.reset();
+
+    setDefaultCommand(new InstantCommand(this::stop));
   }
 
   public void drive(final double speed, final double rotationSpeed) {

@@ -13,10 +13,9 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.WheelColors;
 
-public class ColorSensor extends SubsystemBase {
+public class ColorSensor {
   ColorSensorV3 _colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
   ColorMatch _colorMatcher = new ColorMatch();
@@ -53,10 +52,5 @@ public class ColorSensor extends SubsystemBase {
 
   enum WheelColor {
     BLUE, GREEN, RED, YELLOW, UNKNOWN
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
 }

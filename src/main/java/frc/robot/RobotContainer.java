@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -39,6 +39,9 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_driveTrain = new DriveTrain();
+  private final BallIntake m_ballIntake = new BallIntake();
+  private final Shooter m_shooter = new Shooter();
+
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
 
   private final TestAuto m_driveCommand = new TestAuto(m_driveTrain, m_navx);
@@ -49,10 +52,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-
-    m_driveTrain.setDefaultCommand(new InstantCommand(() -> {
-      m_driveTrain.stop();
-    }));
   }
 
   /**
@@ -62,7 +61,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    leftShooterBumper.whenHeld(new Intake());
+    leftShooterBumper.whenHeld(new Intake(m_ballIntake, 2.0).perpetually());
   }
 
   /**
