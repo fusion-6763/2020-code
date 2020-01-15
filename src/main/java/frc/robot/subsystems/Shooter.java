@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   // The spark that operates the motor.
-  private final Spark motor1 = new Spark(SHOOTER_PORT1);
+  private final Spark motor = new Spark(SHOOTER_PORT1);
 
   public Shooter() {
     setDefaultCommand(new InstantCommand(this::neutral));
