@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BallIntake;
 
 public class Intake extends CommandBase {
-  double _time;
-  Timer _timer;
-  BallIntake _ballIntake;
+  private double _time;
+  private Timer _timer;
+  private BallIntake _ballIntake;
 
   public Intake(final BallIntake ballIntake, final Double time) {
     _time = time;

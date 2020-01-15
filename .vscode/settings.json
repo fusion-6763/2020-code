@@ -12,5 +12,6 @@
     "editor.lineNumbers": "on",
     "wpilib.autoSaveOnDeploy": true,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 60000
+    "files.autoSaveDelay": 60000,
+    "editor.detectIndentation": false
 }
