@@ -21,13 +21,13 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  private Spark _leftMotor = new Spark(LEFT_MOTOR_PORT);
-  private Spark _rightMotor = new Spark(RIGHT_MOTOR_PORT);
+  private final Spark _leftMotor = new Spark(LEFT_MOTOR_PORT);
+  private final Spark _rightMotor = new Spark(RIGHT_MOTOR_PORT);
 
-  private DifferentialDrive _myRobot = new DifferentialDrive(_leftMotor, _rightMotor);
+  private final DifferentialDrive _myRobot = new DifferentialDrive(_leftMotor, _rightMotor);
 
-  private Encoder _leftEncoder = new Encoder(LEFT_ENCODER_PORTS[0], LEFT_ENCODER_PORTS[1]);
-  private Encoder _rightEncoder = new Encoder(RIGHT_ENCODER_PORTS[0], RIGHT_ENCODER_PORTS[1]);
+  private final Encoder _leftEncoder = new Encoder(LEFT_ENCODER_PORTS[0], LEFT_ENCODER_PORTS[1]);
+  private final Encoder _rightEncoder = new Encoder(RIGHT_ENCODER_PORTS[0], RIGHT_ENCODER_PORTS[1]);
 
   /**
    * Creates a new DriveTrain.

@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Constants.WheelColors;
 
 public class ColorSensor {
-  ColorSensorV3 _colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+  private final ColorSensorV3 _colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
-  ColorMatch _colorMatcher = new ColorMatch();
+  private final ColorMatch _colorMatcher = new ColorMatch();
 
   /**
    * Creates a new ColorSensor.
