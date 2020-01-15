@@ -61,7 +61,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    leftShooterBumper.whenHeld(new Intake(m_ballIntake, 2.0));
+    leftShooterBumper.whenHeld(new Intake(m_ballIntake, 2.0).perpetually());
   }
 
   /**
