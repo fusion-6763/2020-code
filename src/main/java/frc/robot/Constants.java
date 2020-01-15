@@ -27,7 +27,7 @@ public final class Constants {
 
         public static final int INTAKE_PORT1 = 3;
         public static final int INTAKE_PORT2 = 4;
-        
+
         public static final int SHOOTER_PORT1 = 5;
 
         public static final int[] LEFT_ENCODER_PORTS = { 0, 1 };
