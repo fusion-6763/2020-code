@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
 import frc.robot.subsystems.BallIntake;
@@ -36,6 +37,8 @@ public class RobotContainer {
   private final XboxController _shooterController = new XboxController(SHOOTER_PORT);
   private final JoystickButton _leftShooterBumper = new JoystickButton(_shooterController,
       XboxController.Button.kBumperLeft.value);
+  private final JoystickButton _rightShooterBumper = new JoystickButton(_shooterController,
+      XboxController.Button.kBumperRight.value);
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain _driveTrain = new DriveTrain();
@@ -62,6 +65,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     _leftShooterBumper.whenHeld(new Intake(_ballIntake));
+    _rightShooterBumper.whenHeld(new Shoot(_shooter));
   }
 
   /**
