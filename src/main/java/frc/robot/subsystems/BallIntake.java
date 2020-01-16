@@ -14,7 +14,7 @@ public class BallIntake extends SubsystemBase {
   private final Spark motor2 = new Spark(INTAKE_PORT2);
 
   public BallIntake() {
-    setDefaultCommand(new InstantCommand(this::neutral));
+    setDefaultCommand(new InstantCommand(this::neutral, this));
   }
 
   // Inputs the ball a full speed backwards.

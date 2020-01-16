@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
     _leftEncoder.reset();
     _rightEncoder.reset();
 
-    setDefaultCommand(new InstantCommand(this::stop));
+    setDefaultCommand(new InstantCommand(this::stop, this));
   }
 
   public void drive(final double speed, final double rotationSpeed) {

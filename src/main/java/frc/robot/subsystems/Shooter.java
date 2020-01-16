@@ -11,7 +11,7 @@ public class Shooter extends SubsystemBase {
   private final Spark motor = new Spark(SHOOTER_PORT1);
 
   public Shooter() {
-    setDefaultCommand(new InstantCommand(this::neutral));
+    setDefaultCommand(new InstantCommand(this::neutral, this));
   }
 
   // Launches that ball at full speed forwards.
