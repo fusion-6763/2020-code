@@ -43,6 +43,8 @@ public final class Constants {
 
   public static final class ShooterConstants {
     public static final int SHOOTER_PORT1 = 5;
+
+    public static final int[] CAMERA_PORTS = { 6, 7, 8 };
   }
 
   public static final class ControllerConstants {
