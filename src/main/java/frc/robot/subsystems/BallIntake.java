@@ -5,7 +5,7 @@ import static frc.robot.Constants.IntakeConstants.INTAKE_PORT1;
 import static frc.robot.Constants.IntakeConstants.INTAKE_PORT2;
 
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BallIntake extends SubsystemBase {
@@ -14,7 +14,7 @@ public class BallIntake extends SubsystemBase {
   private final Spark motor2 = new Spark(INTAKE_PORT2);
 
   public BallIntake() {
-    setDefaultCommand(new InstantCommand(this::neutral, this));
+    setDefaultCommand(new RunCommand(this::neutral, this));
   }
 
   // Inputs the ball a full speed backwards.
