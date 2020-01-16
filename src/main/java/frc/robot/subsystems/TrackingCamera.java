@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.ShooterConstants.CAMERA_PORTS;
+import static frc.robot.Constants.CameraConstants.CAMERA_PORTS;
 
 /**
  * Add your docs here.

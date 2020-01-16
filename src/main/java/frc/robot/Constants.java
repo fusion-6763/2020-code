@@ -44,7 +44,6 @@ public final class Constants {
   public static final class ShooterConstants {
     public static final int SHOOTER_PORT1 = 5;
 
-    public static final int[] CAMERA_PORTS = { 6, 7, 8 };
   }
 
   public static final class ControllerConstants {
@@ -57,5 +56,9 @@ public final class Constants {
     public static final Color GREEN = new ColorShim(0.197, 0.561, 0.240);
     public static final Color RED = new ColorShim(0.561, 0.232, 0.114);
     public static final Color YELLOW = new ColorShim(0.361, 0.524, 0.113);
+  }
+
+  public static final class CameraConstants {
+    public static final int[] CAMERA_PORTS = { 6, 7, 8 };
   }
 }
