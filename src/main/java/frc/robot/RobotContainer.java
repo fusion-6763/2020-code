@@ -36,6 +36,8 @@ public class RobotContainer {
   private final XboxController _shooterController = new XboxController(SHOOTER_PORT);
   private final JoystickButton _leftShooterBumper = new JoystickButton(_shooterController,
       XboxController.Button.kBumperLeft.value);
+  private final JoystickButton _rightShooterBumper = new JoystickButton(_shooterController,
+      XboxController.Button.kBumperRight.value);
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain _driveTrain = new DriveTrain();
