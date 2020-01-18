@@ -5,24 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.sensors;
 
 import static frc.robot.Constants.CameraConstants.CAMERA_PORTS;
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
  * This class defines the camera used for vision tracking.
  */
-public class TrackingCamera extends SubsystemBase {
+public class TrackingCamera {
   private final int _port1 = CAMERA_PORTS[0];
 
   public TrackingCamera() {
-  }
-
-  @Override
-  public void periodic() {
-    super.periodic();
-    // TODO: Get the current information from the camera
   }
 }
