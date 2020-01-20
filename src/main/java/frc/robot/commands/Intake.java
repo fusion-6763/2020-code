@@ -5,7 +5,7 @@ import frc.robot.subsystems.BallIntake;
 
 public class Intake extends CommandBase {
   private BallIntake _ballIntake;
-
+  
   public Intake(final BallIntake ballIntake) {
     _ballIntake = ballIntake;
 
