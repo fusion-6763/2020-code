@@ -49,12 +49,11 @@ public class TrackingCamera {
   }
 
   /**
-   * This finds the largest target in the current frame. This is hidden
-   * intentionally, so the user is always referencing the same block.
+   * This finds the largest target in the current frame.
    * 
    * @return The biggest target in the current frame.
    */
-  private Block getBiggestBlock() {
+  public Block getBiggestBlock() {
     final int blockCount = _pixy.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 
     if (blockCount <= 0) {
