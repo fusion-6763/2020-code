@@ -16,8 +16,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Limelight {
   NetworkTable table;
 
-  public Limelight(String networkTableName) {
-    table = NetworkTableInstance.getDefault().getTable(networkTableName);
+  public Limelight() {
+    table = NetworkTableInstance.getDefault().getTable("limelight");
   }
 
   public double getX() {
