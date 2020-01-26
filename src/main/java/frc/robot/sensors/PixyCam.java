@@ -18,12 +18,12 @@ import io.github.pseudoresonance.pixy2api.links.SPILink;
 /**
  * This class defines the Pixy camera functionality.
  */
-public class TrackingCamera {
+public class PixyCam {
   private final Link _link = new SPILink();
   private final Pixy2 _pixy = Pixy2.createInstance(_link);
   private Block _biggestBlock = null;
 
-  public TrackingCamera() {
+  public PixyCam() {
     _pixy.init();
     _biggestBlock = getBiggestBlock();
   }
