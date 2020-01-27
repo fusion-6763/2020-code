@@ -21,7 +21,9 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
+import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
+import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
@@ -40,7 +42,10 @@ public class RobotContainer {
       XboxController.Button.kBumperLeft.value);
   private final JoystickButton _rightShooterBumper = new JoystickButton(_shooterController,
       XboxController.Button.kBumperRight.value);
+
   private final DriveCamera _driveCamera = new DriveCamera();
+  private final ChameleonVision _ballTracker = new ChameleonVision("BallTracker");
+  private final Limelight _limelight = new Limelight();
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain _driveTrain = new DriveTrain();
