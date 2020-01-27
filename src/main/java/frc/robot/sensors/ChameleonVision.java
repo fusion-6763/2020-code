@@ -21,11 +21,11 @@ public class ChameleonVision implements INetworkTablesTrackingCamera {
   }
 
   public double getX() {
-    return table.getEntry("yaw").getDouble(0.0);
+    return table.getEntry("targetYaw").getDouble(0.0);
   }
 
   public double getY() {
-    return table.getEntry("pitch").getDouble(0.0);
+    return table.getEntry("targetPitch").getDouble(0.0);
   }
 
   public boolean isValid() {
