@@ -14,17 +14,21 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * Add your docs here.
  */
 public class Limelight {
-  NetworkTable table;
+  private final NetworkTable table;
 
   public Limelight() {
     table = NetworkTableInstance.getDefault().getTable("limelight");
   }
 
   public double getX() {
-    return table.getEntry("tx").getDouble(0.0);
+    return table.getEntry("tx").getDouble(0);
   }
 
   public double getY() {
-    return table.getEntry("ty").getDouble(0.0);
+    return table.getEntry("ty").getDouble(0);
+  }
+
+  public double isValid() {
+    return table.getEntry("tv").getDouble(0);
   }
 }
