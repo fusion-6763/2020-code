@@ -13,7 +13,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 /**
  * Add your docs here.
  */
-public class Limelight {
+public class Limelight implements INetworkTablesTrackingCamera {
   private final NetworkTable table;
 
   public Limelight() {
@@ -28,7 +28,19 @@ public class Limelight {
     return table.getEntry("ty").getDouble(0);
   }
 
-  public double isValid() {
-    return table.getEntry("tv").getDouble(0);
+  public boolean isValid() {
+    return table.getEntry("tv").getDouble(0) == 1;
+  }
+
+  public void setDriverMode(boolean driverMode) {
+    if (driverMode) {
+      table.getEntry("camMode").setDouble(1.0);
+    } else {
+      table.getEntry("camMode").setDouble(0.0);
+    }
+  }
+
+  public void setPipeline(int pipeline) {
+    table.getEntry("pipeline").setDouble(pipeline);
   }
 }

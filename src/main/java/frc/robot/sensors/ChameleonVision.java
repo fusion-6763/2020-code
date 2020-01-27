@@ -13,7 +13,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 /**
  * Add your docs here.
  */
-public class ChameleonVision {
+public class ChameleonVision implements INetworkTablesTrackingCamera {
   NetworkTable table;
 
   public ChameleonVision(String cameraName) {
@@ -28,11 +28,15 @@ public class ChameleonVision {
     return table.getEntry("pitch").getDouble(0.0);
   }
 
-  public boolean getIsValid() {
+  public boolean isValid() {
     return table.getEntry("is_valid").getBoolean(false);
   }
 
   public void setDriverMode(boolean driverMode) {
     table.getEntry("driver_mode").setBoolean(driverMode);
+  }
+
+  public void setPipeline(int pipeline) {
+    table.getEntry("pipeline").setDouble(pipeline);
   }
 }
