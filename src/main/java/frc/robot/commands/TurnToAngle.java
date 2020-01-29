@@ -7,25 +7,21 @@
 
 package frc.robot.commands;
 
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
 public class TurnToAngle extends CommandBase {
   private DriveTrain _driveTrain;
-  private AHRS _navx;
   private double _angle;
   private double _speed;
 
   /**
    * Creates a new TurnToAngle.
    */
-  public TurnToAngle(final DriveTrain driveTrain, final AHRS navx, final double angle, final double speed) {
+  public TurnToAngle(final DriveTrain driveTrain, final double angle, final double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     _driveTrain = driveTrain;
-    _navx = navx;
     _angle = angle;
     _speed = speed;
 
@@ -35,7 +31,7 @@ public class TurnToAngle extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    _navx.reset();
+    _driveTrain.resetGyro();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -52,7 +48,7 @@ public class TurnToAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    double realAngle = _navx.getAngle();
+    double realAngle = _driveTrain.getAngle();
 
     if (realAngle <= _angle + 3 && realAngle >= _angle - 3) {
       return true;

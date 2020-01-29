@@ -10,10 +10,7 @@ package frc.robot;
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -52,9 +49,7 @@ public class RobotContainer {
   private final BallIntake _ballIntake = new BallIntake();
   private final Shooter _shooter = new Shooter();
 
-  private final AHRS _navx = new AHRS(SPI.Port.kMXP);
-
-  private final TestAuto _driveCommand = new TestAuto(_driveTrain, _navx);
+  private final TestAuto _driveCommand = new TestAuto(_driveTrain);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

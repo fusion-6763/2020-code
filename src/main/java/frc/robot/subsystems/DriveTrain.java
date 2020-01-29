@@ -14,7 +14,10 @@ import static frc.robot.Constants.DriveConstants.RIGHT_ENCODER_PORTS;
 import static frc.robot.Constants.DriveConstants.RIGHT_ENCODER_REVERSED;
 import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -28,6 +31,7 @@ public class DriveTrain extends SubsystemBase {
 
   private final Encoder _leftEncoder = new Encoder(LEFT_ENCODER_PORTS[0], LEFT_ENCODER_PORTS[1]);
   private final Encoder _rightEncoder = new Encoder(RIGHT_ENCODER_PORTS[0], RIGHT_ENCODER_PORTS[1]);
+  private final AHRS _navx = new AHRS(SPI.Port.kMXP);
 
   /**
    * Creates a new DriveTrain.
@@ -42,6 +46,12 @@ public class DriveTrain extends SubsystemBase {
     setDefaultCommand(new RunCommand(this::stop, this));
   }
 
+  /**
+   * Drives the robot.
+   *
+   * @param speed         The robot's speed along the X axis
+   * @param rotationSpeed The speed the robot rotates along the Z axis
+   */
   public void drive(final double speed, final double rotationSpeed) {
     _myRobot.arcadeDrive(speed, rotationSpeed);
   }
@@ -65,6 +75,14 @@ public class DriveTrain extends SubsystemBase {
     if (right) {
       _rightEncoder.reset();
     }
+  }
+
+  public double getAngle() {
+    return _navx.getAngle();
+  }
+
+  public void resetGyro() {
+    _navx.reset();
   }
 
   public void stop() {

@@ -22,7 +22,7 @@ public class DriveStraight extends CommandBase {
   /**
    * Creates a new DriveStraight.
    */
-  public DriveStraight(final DriveTrain driveTrain, final Mode mode, final double limit, double speed) {
+  public DriveStraight(final DriveTrain driveTrain, final Mode mode, final double limit, final double speed) {
     _driveTrain = driveTrain;
     _mode = mode;
     _limit = limit;
@@ -44,12 +44,32 @@ public class DriveStraight extends CommandBase {
     } else if (_mode == Mode.DISTANCE) {
       _driveTrain.resetEncoders(true, true);
     }
+
+    _driveTrain.resetGyro();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  /**
+   * Called every time the scheduler runs while the command is scheduled.
+   */
   @Override
   public void execute() {
-    _driveTrain.drive(_speed, 0.0);
+
+    // If the angle is > 2 degrees, the robot is turned to the right.
+    // Turn left to fix the offset, which is counterclockwise.
+    if (_driveTrain.getAngle() > 2) {
+      _driveTrain.drive(_speed, -0.4);
+    }
+
+    // If the angle is < -2 degrees, the robot is turned to the left.
+    // Turn right to fix the offset, which is clockwise.
+    else if (_driveTrain.getAngle() < -2) {
+      _driveTrain.drive(_speed, 0.4);
+    }
+
+    // If the robot isn't crooked, just drive straight.
+    else {
+      _driveTrain.drive(_speed, 0.0);
+    }
     System.out.println("Run");
   }
 
