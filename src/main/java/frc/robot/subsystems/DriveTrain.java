@@ -15,17 +15,18 @@ import static frc.robot.Constants.DriveConstants.RIGHT_ENCODER_REVERSED;
 import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  private final Spark _leftMotor = new Spark(LEFT_MOTOR_PORT);
-  private final Spark _rightMotor = new Spark(RIGHT_MOTOR_PORT);
+  private final CANSparkMax _leftMotor = new CANSparkMax(LEFT_MOTOR_PORT, MotorType.kBrushless);
+  private final CANSparkMax _rightMotor = new CANSparkMax(RIGHT_MOTOR_PORT, MotorType.kBrushless);
 
   private final DifferentialDrive _myRobot = new DifferentialDrive(_leftMotor, _rightMotor);
 
@@ -42,6 +43,9 @@ public class DriveTrain extends SubsystemBase {
 
     _leftEncoder.reset();
     _rightEncoder.reset();
+
+    _leftMotor.restoreFactoryDefaults();
+    _rightMotor.restoreFactoryDefaults();
 
     setDefaultCommand(new RunCommand(this::stop, this));
   }
