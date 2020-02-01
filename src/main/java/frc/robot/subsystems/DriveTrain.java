@@ -35,8 +35,8 @@ public class DriveTrain extends SubsystemBase {
 
   private final DifferentialDrive _myRobot = new DifferentialDrive(_leftSide, _rightSide);
 
-  private final CANEncoder _leftEncoder = _leftMotor1.getEncoder();
-  private final CANEncoder _rightEncoder = _rightMotor1.getEncoder();
+  private final CANEncoder _leftEncoder;
+  private final CANEncoder _rightEncoder;
 
   private final AHRS _navx = new AHRS(SPI.Port.kMXP);
 
@@ -44,8 +44,8 @@ public class DriveTrain extends SubsystemBase {
    * Creates a new DriveTrain.
    */
   public DriveTrain() {
-    _leftEncoder.setInverted(LEFT_ENCODER_REVERSED);
-    _rightEncoder.setInverted(RIGHT_ENCODER_REVERSED);
+    _leftEncoder = _leftMotor1.getEncoder();
+    _rightEncoder = _rightMotor1.getEncoder();
 
     _leftEncoder.setPosition(0);
     _rightEncoder.setPosition(0);
