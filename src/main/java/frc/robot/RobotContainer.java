@@ -13,6 +13,7 @@ import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
@@ -49,7 +50,7 @@ public class RobotContainer {
   private final BallIntake _ballIntake = new BallIntake();
   private final Shooter _shooter = new Shooter();
 
-  private final TestAuto _driveCommand = new TestAuto(_driveTrain);
+  private final SequentialCommandGroup _driveCommand = new TestAuto(_driveTrain);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
