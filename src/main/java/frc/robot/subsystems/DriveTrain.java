@@ -7,10 +7,8 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.DriveConstants.LEFT_ENCODER_REVERSED;
 import static frc.robot.Constants.DriveConstants.LEFT_MOTOR_PORT_1;
 import static frc.robot.Constants.DriveConstants.LEFT_MOTOR_PORT_2;
-import static frc.robot.Constants.DriveConstants.RIGHT_ENCODER_REVERSED;
 import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT_1;
 import static frc.robot.Constants.DriveConstants.RIGHT_MOTOR_PORT_2;
 
