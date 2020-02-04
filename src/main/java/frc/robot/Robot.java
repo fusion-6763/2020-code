@@ -59,6 +59,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    _myRobot._limelight.setLights(false);
   }
 
   @Override
@@ -72,6 +73,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     _myRobot.getAutonomousCommand().schedule();
+
+    _myRobot._limelight.setLights(true);
   }
 
   /**

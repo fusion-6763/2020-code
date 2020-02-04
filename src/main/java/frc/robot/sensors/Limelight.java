@@ -43,4 +43,12 @@ public class Limelight implements INetworkTablesTrackingCamera {
   public void setPipeline(int pipeline) {
     table.getEntry("pipeline").setDouble(pipeline);
   }
+
+  public void setLights(boolean on) {
+    if (on) {
+      table.getEntry("ledMode").setDouble(3);
+    } else {
+      table.getEntry("ledMode").setDouble(0);
+    }
+  }
 }

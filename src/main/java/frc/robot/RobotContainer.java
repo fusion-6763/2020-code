@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
+import frc.robot.commands.LimelightTestAuto;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
@@ -43,14 +44,14 @@ public class RobotContainer {
 
   private final DriveCamera _driveCamera = new DriveCamera();
   private final ChameleonVision _ballTracker = new ChameleonVision("BallTracker");
-  private final Limelight _limelight = new Limelight();
+  public final Limelight _limelight = new Limelight();
 
   // The robot's subsystems and commands are defined here...
   private final DriveTrain _driveTrain = new DriveTrain();
   private final BallIntake _ballIntake = new BallIntake();
   private final Shooter _shooter = new Shooter();
 
-  private final CommandGroupBase _driveCommand = new TestAuto(_driveTrain);
+  private final Command _driveCommand = new LimelightTestAuto(_driveTrain, _limelight);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
