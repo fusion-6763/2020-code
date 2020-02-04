@@ -44,11 +44,19 @@ public class Limelight implements INetworkTablesTrackingCamera {
     table.getEntry("pipeline").setDouble(pipeline);
   }
 
-  public void setLights(boolean on) {
-    if (on) {
+  public void setLights(LightMode mode) {
+    if (mode == LightMode.ON) {
       table.getEntry("ledMode").setDouble(3);
-    } else {
+    } else if (mode == LightMode.DEFAULT) {
       table.getEntry("ledMode").setDouble(0);
+    } else if (mode == LightMode.OFF) {
+      table.getEntry("ledMode").setDouble(1);
+    } else if (mode == LightMode.BLINKY) {
+      table.getEntry("ledMode").setDouble(2);
     }
+  }
+
+  public enum LightMode {
+    ON, OFF, DEFAULT, BLINKY
   }
 }
