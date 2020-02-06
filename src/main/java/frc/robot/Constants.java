@@ -36,13 +36,13 @@ public final class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final int INTAKE_PORT1 = 5;
-    public static final int INTAKE_PORT2 = 6;
+    public static final int INTAKE_PORT1 = 9;
+    public static final int INTAKE_PORT2 = 10;
   }
 
   public static final class ShooterConstants {
-    public static final int SHOOTER_PORT1 = 9;
-    public static final int SHOOTER_PORT2 = 10;
+    public static final int SHOOTER_PORT1 = 5;
+    public static final int SHOOTER_PORT2 = 6;
 
   }
 
