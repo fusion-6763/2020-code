@@ -26,8 +26,6 @@ public final class Constants {
     public static final int RIGHT_MOTOR_PORT_1 = 3;
     public static final int RIGHT_MOTOR_PORT_2 = 4;
 
-    public static final int[] LEFT_ENCODER_PORTS = { 0, 1 };
-    public static final int[] RIGHT_ENCODER_PORTS = { 2, 3 };
     public static final boolean LEFT_ENCODER_REVERSED = false;
     public static final boolean RIGHT_ENCODER_REVERSED = true;
 
@@ -61,6 +59,6 @@ public final class Constants {
   }
 
   public static final class CameraConstants {
-    public static final int[] CAMERA_PORTS = { 6, 7, 8 };
+    public static final String CHAMELEON_CAMERA_NAME = "BallTracker";
   }
 }

@@ -9,6 +9,7 @@ package frc.robot;
 
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
+import static frc.robot.Constants.CameraConstants.CHAMELEON_CAMERA_NAME;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -43,7 +44,7 @@ public class RobotContainer {
       XboxController.Button.kBumperRight.value);
 
   private final DriveCamera _driveCamera = new DriveCamera();
-  private final ChameleonVision _ballTracker = new ChameleonVision("BallTracker");
+  private final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
   public final Limelight _limelight = new Limelight();
 
   // The robot's subsystems and commands are defined here...
