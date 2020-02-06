@@ -20,6 +20,7 @@ public class BallIntake extends SubsystemBase {
   // Inputs the ball a full speed backwards.
   public void inputBall() {
     motor1.set(-1);
+    motor2.set(1);
   };
 
   // Stops spinning the motor.

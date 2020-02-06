@@ -44,6 +44,7 @@ public final class Constants {
 
   public static final class ShooterConstants {
     public static final int SHOOTER_PORT1 = 9;
+    public static final int SHOOTER_PORT2 = 10;
 
   }
 
