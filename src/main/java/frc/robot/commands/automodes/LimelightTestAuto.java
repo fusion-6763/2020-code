@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.automodes;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.sensors.Limelight;
@@ -14,7 +14,10 @@ import frc.robot.subsystems.DriveTrain;
 public class LimelightTestAuto extends CommandBase {
   Limelight _limelight;
   DriveTrain _driveTrain;
-  double tolerance = 3;
+
+  // The ideal size for the object the Limelight sees.
+  // Measured in percent of the Limelight's viewport.
+  double idealSize = 20;
 
   /**
    * Creates a new LimelightTestAuto.
@@ -35,11 +38,15 @@ public class LimelightTestAuto extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = _limelight.getX() / 60;
-    speed = speed < 0 ? speed - 0.1 : speed + 0.1;
+    // Turning stuffs
+    double turnSpeed = _limelight.getX() / 60;
+    turnSpeed = turnSpeed < 0 ? turnSpeed - 0.1 : turnSpeed + 0.1;
 
-    _driveTrain.drive(0.0, speed);
-    _driveTrain.drive(0.0, speed);
+    // Forward/back stuffs
+    double driveSpeed = 0.0;
+
+    // Actually drive
+    _driveTrain.drive(driveSpeed, turnSpeed);
   }
 
   // Called once the command ends or is interrupted.

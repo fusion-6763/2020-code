@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
-import frc.robot.commands.LimelightTestAuto;
+import frc.robot.commands.automodes.LimelightTestAuto;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.TestAuto;
