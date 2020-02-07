@@ -7,20 +7,18 @@
 
 package frc.robot;
 
+import static frc.robot.Constants.CameraConstants.CHAMELEON_CAMERA_NAME;
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
-import static frc.robot.Constants.CameraConstants.CHAMELEON_CAMERA_NAME;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Intake;
-import frc.robot.commands.automodes.LimelightTestAuto;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
-import frc.robot.commands.automodes.TestAuto;
+import frc.robot.commands.automodes.LimelightTestAuto;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
 import frc.robot.sensors.Limelight;
