@@ -7,6 +7,10 @@
 
 package frc.robot.sensors;
 
+import static frc.robot.Constants.ShooterConstants.LIMELIGHT_ANGLE;
+import static frc.robot.Constants.ShooterConstants.POWER_PORT_HEIGHT_FT;
+import static frc.robot.Constants.ShooterConstants.ROBOT_HEIGHT_FT;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -30,6 +34,11 @@ public class Limelight implements INetworkTablesTrackingCamera {
 
   public boolean isValid() {
     return table.getEntry("tv").getDouble(0) == 1;
+  }
+
+  public double getDistance() {
+    final double targetAngle = getY();
+    return (POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT) / Math.tan(LIMELIGHT_ANGLE + targetAngle);
   }
 
   public void setDriverMode(boolean driverMode) {
