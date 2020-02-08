@@ -46,18 +46,15 @@ public class Limelight implements INetworkTablesTrackingCamera {
     // v = sqrt((2(x * tan(a) + h - y)/(cos²(a)x²g))
     // All measurements are in feet
     final double x = getDistance();
-    final double y = 8.1875;
-    final double h = ROBOT_HEIGHT_FT;
     final double g = 32.174;
-    final double a = SHOOTER_ANGLE;
-    final double tanA = Math.tan(a);
-    final double cosA = Math.cos(a);
-    final double numerator = 2 * ((x * tanA) + h - y);
+    final double tanA = Math.tan(SHOOTER_ANGLE);
+    final double cosA = Math.cos(SHOOTER_ANGLE);
+    final double numerator = 2 * ((x * tanA) + ROBOT_HEIGHT_FT - POWER_PORT_HEIGHT_FT);
     final double denominator = (cosA * cosA) * (x * x) * g;
     return Math.sqrt(numerator / denominator);
   }
 
-  public void setDriverMode(boolean driverMode) {
+  public void setDriverMode(final boolean driverMode) {
     if (driverMode) {
       table.getEntry("camMode").setDouble(1.0);
     } else {
@@ -65,11 +62,11 @@ public class Limelight implements INetworkTablesTrackingCamera {
     }
   }
 
-  public void setPipeline(int pipeline) {
+  public void setPipeline(final int pipeline) {
     table.getEntry("pipeline").setDouble(pipeline);
   }
 
-  public void setLights(LightMode mode) {
+  public void setLights(final LightMode mode) {
     if (mode == LightMode.ON) {
       table.getEntry("ledMode").setDouble(3);
     } else if (mode == LightMode.DEFAULT) {
