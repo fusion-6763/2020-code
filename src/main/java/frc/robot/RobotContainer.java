@@ -71,7 +71,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     _leftShooterBumper.whenHeld(new Intake(_ballIntake));
     _rightShooterBumper.whenHeld(new Shoot(_shooter));
-    _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker));
+    _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
   }
 
   /**
