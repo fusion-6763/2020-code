@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
@@ -40,6 +41,7 @@ public class RobotContainer {
       XboxController.Button.kBumperLeft.value);
   private final JoystickButton _rightShooterBumper = new JoystickButton(_shooterController,
       XboxController.Button.kBumperRight.value);
+  private final JoystickButton _xButton = new JoystickButton(_driverController, XboxController.Button.kX.value);
 
   private final DriveCamera _driveCamera = new DriveCamera();
   private final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
@@ -69,6 +71,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     _leftShooterBumper.whenHeld(new Intake(_ballIntake));
     _rightShooterBumper.whenHeld(new Shoot(_shooter));
+    _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker));
   }
 
   /**
