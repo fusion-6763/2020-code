@@ -43,6 +43,8 @@ public final class Constants {
   public static final class ShooterConstants {
     public static final int SHOOTER_PORT1 = 5;
     public static final int SHOOTER_PORT2 = 6;
+    public static final int ROTATOR_PORT = 7;
+    public static final int MAX_NEO_RPM = 5700;
     public static final double POWER_PORT_HEIGHT_FT = 8.1875;
     public static final double ROBOT_HEIGHT_FT = 2;
     public static final double LIMELIGHT_ANGLE = 45;
@@ -50,7 +52,7 @@ public final class Constants {
     public static final double ROLLER_DIAMETER_FT = 0.25;
 
     // tx: Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
-    public static final double LIMELIGHT_X_RANGE = 54;
+    public static final int LIMELIGHT_X_RANGE = 54;
   }
 
   public static final class ControllerConstants {

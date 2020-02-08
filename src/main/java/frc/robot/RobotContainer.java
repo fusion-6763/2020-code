@@ -48,7 +48,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain _driveTrain = new DriveTrain();
   private final BallIntake _ballIntake = new BallIntake();
-  private final Shooter _shooter = new Shooter();
+  private final Shooter _shooter = new Shooter(_limelight);
 
   private final Command _driveCommand = new LimelightTestAuto(_driveTrain, _limelight);
 
