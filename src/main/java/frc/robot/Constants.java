@@ -48,6 +48,9 @@ public final class Constants {
     public static final double LIMELIGHT_ANGLE = 45;
     public static final double SHOOTER_ANGLE = 45;
     public static final double ROLLER_DIAMETER_FT = 0.25;
+
+    // tx: Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
+    public static final double LIMELIGHT_X_RANGE = 54;
   }
 
   public static final class ControllerConstants {

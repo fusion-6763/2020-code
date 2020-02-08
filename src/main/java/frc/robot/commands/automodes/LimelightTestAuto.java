@@ -7,6 +7,8 @@
 
 package frc.robot.commands.automodes;
 
+import static frc.robot.Constants.ShooterConstants.LIMELIGHT_X_RANGE;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.DriveTrain;
@@ -39,8 +41,7 @@ public class LimelightTestAuto extends CommandBase {
   @Override
   public void execute() {
     // Turning stuffs
-    double turnSpeed = _limelight.getX() / 60;
-    turnSpeed = turnSpeed < 0 ? turnSpeed - 0.1 : turnSpeed + 0.1;
+    double turnSpeed = _limelight.getX() / LIMELIGHT_X_RANGE;
 
     // Forward/back stuffs
     double driveSpeed = 0.0;
