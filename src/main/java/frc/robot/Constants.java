@@ -47,6 +47,7 @@ public final class Constants {
     public static final double ROBOT_HEIGHT_FT = 2;
     public static final double LIMELIGHT_ANGLE = 45;
     public static final double SHOOTER_ANGLE = 45;
+    public static final double ROLLER_DIAMETER_FT = 0.25;
   }
 
   public static final class ControllerConstants {
