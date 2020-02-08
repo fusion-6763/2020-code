@@ -33,12 +33,13 @@ public class FindPowerCell extends CommandBase {
   @Override
   public void execute() {
     final double speed = _camera.getX() / 30;
-    _driveTrain.drive(0.0, speed);
+    _driveTrain.drive(0, speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    _driveTrain.drive(0, 0);
   }
 
   // Returns true when the command should end.
