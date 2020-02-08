@@ -43,7 +43,10 @@ public class Limelight implements INetworkTablesTrackingCamera {
     return (POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT) / Math.tan(LIMELIGHT_ANGLE + targetAngle);
   }
 
-  public double getVelocity() { // returns the needed velocity of the ball to shoot it into the power port.
+  /**
+   * Returns the needed velocity of the ball to shoot it into the power port.
+   */
+  public double getVelocity() {
     // v = sqrt((2(x * tan(a) + h - y)/(cos²(a)x²g))
     // All measurements are in feet
     final double x = getDistance();
