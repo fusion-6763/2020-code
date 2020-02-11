@@ -7,6 +7,8 @@
 
 package frc.robot.sensors;
 
+import static frc.robot.Constants.ShooterConstants.DISTANCE_OFFSET_FT;
+import static frc.robot.Constants.ShooterConstants.GRAVITY_FT_SEC_2;
 import static frc.robot.Constants.ShooterConstants.LIMELIGHT_ANGLE;
 import static frc.robot.Constants.ShooterConstants.POWER_PORT_HEIGHT_FT;
 import static frc.robot.Constants.ShooterConstants.ROBOT_HEIGHT_FT;
@@ -45,17 +47,24 @@ public class Limelight implements INetworkTablesTrackingCamera {
 
   /**
    * Returns the needed velocity of the ball to shoot it into the power port.
+   * 
+   * All measurements are in feet, degrees and seconds.
+   * 
+   * v = sqrt((2(x * tan(a) + h - y)/(cos²(a)x²g))
+   * 
+   * v = sqrt((x * g) / sin(2a))
+   * 
+   * @see https://en.wikipedia.org/wiki/Projectile_motion#Maximum_height_of_projectile
+   * @return the initial velocity of the ball required to reach the target.
    */
   public double getVelocity() {
-    // v = sqrt((2(x * tan(a) + h - y)/(cos²(a)x²g))
-    // All measurements are in feet
-    final double x = getDistance();
-    final double g = 32.174;
+    final double x = getDistance() + DISTANCE_OFFSET_FT;
     final double tanA = Math.tan(SHOOTER_ANGLE);
     final double cosA = Math.cos(SHOOTER_ANGLE);
     final double numerator = 2 * ((x * tanA) + ROBOT_HEIGHT_FT - POWER_PORT_HEIGHT_FT);
-    final double denominator = (cosA * cosA) * (x * x) * g;
-    return Math.sqrt(numerator / denominator);
+    final double denominator = (cosA * cosA) * (x * x) * GRAVITY_FT_SEC_2;
+    // return Math.sqrt(numerator / denominator);
+    return Math.sqrt((x * GRAVITY_FT_SEC_2) / Math.sin(2 * SHOOTER_ANGLE));
   }
 
   public double getRPM() {

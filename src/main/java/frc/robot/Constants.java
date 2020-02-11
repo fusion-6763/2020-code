@@ -50,6 +50,9 @@ public final class Constants {
     public static final double LIMELIGHT_ANGLE = 45;
     public static final double SHOOTER_ANGLE = 45;
     public static final double ROLLER_DIAMETER_FT = 0.25;
+    public static final double INNER_PORT_DEPTH_FT = 2.4375;
+    public static final double DISTANCE_OFFSET_FT = INNER_PORT_DEPTH_FT + 2;
+    public static final double GRAVITY_FT_SEC_2 = 32.174;
 
     // tx: Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
     public static final int LIMELIGHT_X_RANGE = 54;
