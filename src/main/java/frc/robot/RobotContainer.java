@@ -44,7 +44,7 @@ public class RobotContainer {
   private final JoystickButton _xButton = new JoystickButton(_driverController, XboxController.Button.kX.value);
 
   private final DriveCamera _driveCamera = new DriveCamera();
-  private final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
+  public final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
   public final Limelight _limelight = new Limelight();
 
   // The robot's subsystems and commands are defined here...
