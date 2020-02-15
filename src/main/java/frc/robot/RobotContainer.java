@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
+import frc.robot.commands.MakeyTeleop;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.Teleop;
 import frc.robot.commands.automodes.LimelightTestAuto;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
@@ -84,6 +84,7 @@ public class RobotContainer {
   }
 
   public Command getTeleopCommand() {
-    return new Teleop(_driveTrain, _driverController);
+    // return new Teleop(_driveTrain, _driverController);
+    return new MakeyTeleop(_driveTrain);
   }
 }
