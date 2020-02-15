@@ -14,10 +14,12 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * Add your docs here.
  */
 public class ChameleonVision implements INetworkTablesTrackingCamera {
-  NetworkTable table;
+  private NetworkTableInstance ntInst;
+  private NetworkTable table;
 
   public ChameleonVision(String cameraName) {
-    table = NetworkTableInstance.getDefault().getTable("chameleon-vision").getSubTable(cameraName);
+    ntInst = NetworkTableInstance.getDefault();
+    table = ntInst.getTable("chameleon-vision").getSubTable(cameraName);
   }
 
   public double getX() {
@@ -38,5 +40,13 @@ public class ChameleonVision implements INetworkTablesTrackingCamera {
 
   public void setPipeline(int pipeline) {
     table.getEntry("pipeline").setDouble(pipeline);
+  }
+
+  public void startTracking() {
+    ntInst.getTable("pi-table").getEntry("on").setBoolean(true);
+  }
+
+  public void stopTracking() {
+    ntInst.getTable("pi-table").getEntry("on").setBoolean(false);
   }
 }
