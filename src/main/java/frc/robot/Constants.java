@@ -30,7 +30,7 @@ public final class Constants {
     public static final boolean RIGHT_ENCODER_REVERSED = true;
 
     public static final int ENCODER_COUNTS_PER_ROTATION = 1024;
-    public static final double WHEEL_DIAMETER = 6;
+    public static final double WHEEL_DIAMETER = 6; //In inches
     public static final double ENCODER_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
         / (double) ENCODER_COUNTS_PER_ROTATION;
   }

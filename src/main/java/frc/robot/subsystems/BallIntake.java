@@ -25,7 +25,7 @@ public class BallIntake extends SubsystemBase {
   public void armUp() {
     arm.set(1);
   }
-  
+
   public void armDown() {
     arm.set(-1);
   }

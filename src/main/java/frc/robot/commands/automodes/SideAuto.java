@@ -24,8 +24,8 @@ public class SideAuto extends SequentialCommandGroup {
   public SideAuto(final DriveTrain driveTrain) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new DriveStraight(driveTrain, Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, 180, 0.6),
-        new DriveStraight(driveTrain, Mode.TIME, 2, 0.6), new TurnToAngle(driveTrain, 180, 0.6),
-        new DriveStraight(driveTrain, Mode.TIME, 2, 0.6));
+    super(
+      
+    );
   }
 }

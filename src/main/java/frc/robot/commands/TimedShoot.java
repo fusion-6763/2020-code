@@ -14,16 +14,14 @@ import frc.robot.subsystems.Shooter;
 public class TimedShoot extends CommandBase {
   private Shooter _shooter;
   private double _time;
-  private double _speed;
 
   private Timer _timer;
 
   /**
    * Creates a new DriveStraight.
    */
-  public TimedShoot(final Shooter shooter, final double speed, final double time) {
+  public TimedShoot(final Shooter shooter, final double time) {
     _shooter = shooter;
-    _speed = speed;
     _time = time;
 
     _timer = new Timer();

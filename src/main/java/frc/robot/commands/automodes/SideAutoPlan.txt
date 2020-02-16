@@ -1,7 +1,9 @@
-1. Start the intake motor and put it down
-2. Drive in the direction of the balls while intaking, and start tracking the power port. pickup 2 ball
-3. fire 5 balls. feeder + hopper + shooter
-4. Drive to pick up 3 more balls.
-5. Stop the intake motor
-6. Drive back upnder the control panel
-7. Fire the balls. feeder + hopper + shooter
+ Start the intake motor and put it down
+ Drive 161.16 inches (in the direction of the balls) while intaking, and start tracking the power port. (pickup 2 ball)
+ rev up the shooter.
+ fire 5 balls. feeder + hopper + shooter
+ Drive 157.311 inches to pick up 3 more balls.
+ Stop the intake motor
+ Drive back under the control panel, 157.311 inches
+ rev up shooter.
+ Fire the balls. feeder + hopper + shooter
