@@ -56,14 +56,24 @@ public class DriveStraight extends CommandBase {
 
     // If the angle is > 2 degrees, the robot is turned to the right.
     // Turn left to fix the offset, which is counterclockwise.
+    // The turning direction is reversed if the robot is moving backwards.
     if (_driveTrain.getAngle() > 2) {
-      _driveTrain.drive(_speed, -0.4);
+      if (_speed > 0) {
+        _driveTrain.drive(_speed, -0.4);
+      } else {
+        _driveTrain.drive(_speed, 0.4);
+      }
     }
 
     // If the angle is < -2 degrees, the robot is turned to the left.
     // Turn right to fix the offset, which is clockwise.
+    // The turning direction is reversed if the robot is moving backwards.
     else if (_driveTrain.getAngle() < -2) {
-      _driveTrain.drive(_speed, 0.4);
+      if (_speed > 0) {
+        _driveTrain.drive(_speed, 0.4);
+      } else {
+        _driveTrain.drive(_speed, -0.4);
+      }
     }
 
     // If the robot isn't crooked, just drive straight.
@@ -81,7 +91,9 @@ public class DriveStraight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (_mode == Mode.DISTANCE && _driveTrain.getEncoders() >= _limit) {
+    if (_speed > 0 && _mode == Mode.DISTANCE && _driveTrain.getEncoders() >= _limit) {
+      return true;
+    } else if (_speed < 0 && _mode == Mode.DISTANCE && _driveTrain.getEncoders() <= _limit) {
       return true;
     } else if (_mode == Mode.TIME && _timer.get() >= _limit) {
       return true;
