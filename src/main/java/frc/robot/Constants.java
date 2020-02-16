@@ -30,7 +30,7 @@ public final class Constants {
     public static final boolean RIGHT_ENCODER_REVERSED = true;
 
     public static final int ENCODER_COUNTS_PER_ROTATION = 1024;
-    public static final double WHEEL_DIAMETER = 6; //In inches
+    public static final double WHEEL_DIAMETER = 6; // In inches
     public static final double ENCODER_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
         / (double) ENCODER_COUNTS_PER_ROTATION;
   }
@@ -38,7 +38,11 @@ public final class Constants {
   public static final class IntakeConstants {
     public static final int INTAKE_ARM_PORT = 9;
     public static final int INTAKE_SUCC_PORT = 10;
+
+    public static final int ENCODER_DISTANCE_TO_90DEG = 90;
+
     public static final int HOPPER_PORT = 11;
+
     public static final int TOWER_PORT = 12;
   }
 

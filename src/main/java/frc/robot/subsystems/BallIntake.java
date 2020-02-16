@@ -4,13 +4,16 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.IntakeConstants.INTAKE_ARM_PORT;
 import static frc.robot.Constants.IntakeConstants.INTAKE_SUCC_PORT;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BallIntake extends SubsystemBase {
   // The spark that operates the motor.
-  private final Spark arm = new Spark(INTAKE_ARM_PORT);
+  private final CANSparkMax arm = new CANSparkMax(INTAKE_ARM_PORT, MotorType.kBrushless);
   private final Spark succ = new Spark(INTAKE_SUCC_PORT);
 
   public BallIntake() {
@@ -28,6 +31,10 @@ public class BallIntake extends SubsystemBase {
 
   public void armDown() {
     arm.set(-1);
+  }
+
+  public double getEncoderPosition(){
+    return arm.getEncoder().getPosition();
   }
 
   // Stops spinning the motor.

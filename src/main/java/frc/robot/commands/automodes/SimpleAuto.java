@@ -16,11 +16,13 @@ import frc.robot.commands.RunTower;
 import frc.robot.commands.TimedShoot;
 import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.Aim;
+
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Tower;
-import static frc.robot.Constants.DriveConstants.ENCODER_DISTANCE_PER_PULSE;;
+
+import static frc.robot.Constants.DriveConstants.ENCODER_DISTANCE_PER_PULSE;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -35,7 +37,6 @@ public class SimpleAuto extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(new Aim(shooter), new TimedShoot(shooter, 1.5),
         new ParallelRaceGroup(new TimedShoot(shooter, 11.5), new RunHopper(hopper), new RunTower(tower)),
-        new DriveStraight(driveTrain, Mode.DISTANCE, 12 / ENCODER_DISTANCE_PER_PULSE, 0.6)
-    );
+        new DriveStraight(driveTrain, Mode.DISTANCE, 12 / ENCODER_DISTANCE_PER_PULSE, 0.6));
   }
 }
