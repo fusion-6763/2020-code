@@ -36,8 +36,16 @@ public final class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final int INTAKE_PORT1 = 9;
-    public static final int INTAKE_PORT2 = 10;
+    public static final int INTAKE_ARM_PORT = 9;
+    public static final int INTAKE_SUCC_PORT = 10;
+    public static final int HOPPER_PORT = 11;
+    public static final int TOWER_PORT = 12;
+  }
+
+  public static final class HopperConstants {
+  }
+
+  public static final class TowerConstants {
   }
 
   public static final class ShooterConstants {
