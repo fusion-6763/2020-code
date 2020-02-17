@@ -7,28 +7,23 @@
 
 package frc.robot.commands.automodes;
 
-import static frc.robot.Constants.DriveConstants.ENCODER_DISTANCE_PER_PULSE;
-
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.BallIntake;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Hopper;
-import frc.robot.subsystems.Tower;
-
 import frc.robot.commands.Aim;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.Intake;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.RunTower;
-import frc.robot.commands.Shoot;
 import frc.robot.commands.TimedShoot;
-import frc.robot.commands.DriveStraight.Mode;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Tower;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

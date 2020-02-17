@@ -59,10 +59,11 @@ public class Limelight implements INetworkTablesTrackingCamera {
    */
   public double getVelocity() {
     final double x = getDistance() + DISTANCE_OFFSET_FT;
-    final double tanA = Math.tan(SHOOTER_ANGLE);
-    final double cosA = Math.cos(SHOOTER_ANGLE);
-    //final double numerator = 2 * ((x * tanA) + ROBOT_HEIGHT_FT - POWER_PORT_HEIGHT_FT);
-    //final double denominator = (cosA * cosA) * (x * x) * GRAVITY_FT_SEC_2;
+    // final double tanA = Math.tan(SHOOTER_ANGLE);
+    // final double cosA = Math.cos(SHOOTER_ANGLE);
+    // final double numerator = 2 * ((x * tanA) + ROBOT_HEIGHT_FT -
+    // POWER_PORT_HEIGHT_FT);
+    // final double denominator = (cosA * cosA) * (x * x) * GRAVITY_FT_SEC_2;
     // return Math.sqrt(numerator / denominator);
     return Math.sqrt((x * GRAVITY_FT_SEC_2) / Math.sin(2 * SHOOTER_ANGLE));
   }
