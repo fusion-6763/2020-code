@@ -46,8 +46,6 @@ public class SideAuto extends SequentialCommandGroup {
         new ParallelRaceGroup(new DriveStraight(driveTrain, Mode.DISTANCE, 157.311, .8), new Intake(ballIntake)),
         new DriveStraight(driveTrain, Mode.DISTANCE, -157.311, -0.8),
         new ParallelCommandGroup(new TimedShoot(shooter, 1), new Aim(shooter)),
-        new ParallelRaceGroup(new TimedShoot(shooter, 3), new RunHopper(hopper), new RunTower(tower))
-
-    );
+        new ParallelRaceGroup(new TimedShoot(shooter, 3), new RunHopper(hopper), new RunTower(tower)));
   }
 }
