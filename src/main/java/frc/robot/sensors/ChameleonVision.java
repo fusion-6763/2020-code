@@ -41,12 +41,4 @@ public class ChameleonVision implements INetworkTablesTrackingCamera {
   public void setPipeline(int pipeline) {
     table.getEntry("pipeline").setDouble(pipeline);
   }
-
-  public void startTracking() {
-    ntInst.getTable("pi-table").getEntry("on").setBoolean(true);
-  }
-
-  public void stopTracking() {
-    ntInst.getTable("pi-table").getEntry("on").setBoolean(false);
-  }
 }

@@ -61,7 +61,6 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     _myRobot._limelight.setLights(LightMode.DEFAULT);
-    _myRobot._ballTracker.stopTracking();
   }
 
   @Override
@@ -75,8 +74,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     _myRobot.getAutonomousCommand().schedule();
-    _myRobot._ballTracker.startTracking();
-
     _myRobot._limelight.setLights(LightMode.ON);
   }
 
@@ -97,7 +94,6 @@ public class Robot extends TimedRobot {
       _autonomousCommand.cancel();
     }
 
-    _myRobot._ballTracker.startTracking();
     _myRobot.getTeleopCommand().schedule();
   }
 
