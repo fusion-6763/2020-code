@@ -37,6 +37,6 @@ public class SimpleAuto extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(new Aim(shooter), new TimedShoot(shooter, 1.5),
         new ParallelRaceGroup(new TimedShoot(shooter, 11.5), new RunHopper(hopper), new RunTower(tower)),
-        new DriveStraight(driveTrain, Mode.DISTANCE, 12 / ENCODER_DISTANCE_PER_PULSE, 0.6));
+        new DriveStraight(driveTrain, Mode.DISTANCE, 12, 0.6));
   }
 }

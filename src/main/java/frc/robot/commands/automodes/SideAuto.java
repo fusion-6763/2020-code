@@ -43,16 +43,15 @@ public class SideAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(new ParallelRaceGroup(new ArmDown(ballIntake), new Intake(ballIntake)),
-        new ParallelDeadlineGroup(new DriveStraight(driveTrain, Mode.DISTANCE, 161.16 / ENCODER_DISTANCE_PER_PULSE, .8),
-            new Aim(shooter), new Intake(ballIntake)),
+        new ParallelDeadlineGroup(new DriveStraight(driveTrain, Mode.DISTANCE, 161.16, .8), new Aim(shooter),
+            new Intake(ballIntake)),
         new ParallelCommandGroup(new TimedShoot(shooter, 1), new Intake(ballIntake), new Aim(shooter)),
         new ParallelRaceGroup(new TimedShoot(shooter, 3), new RunHopper(hopper), new RunTower(tower),
             new Intake(ballIntake)),
-        new ParallelRaceGroup(new DriveStraight(driveTrain, Mode.DISTANCE, 157.311 / ENCODER_DISTANCE_PER_PULSE, .8),
-            new Intake(ballIntake)),
-        new DriveStraight(driveTrain, Mode.DISTANCE, -157.311 / ENCODER_DISTANCE_PER_PULSE, -0.8), // TODO: Fix
-                                                                                                   // DriveStraight to
-                                                                                                   // run backwards
+        new ParallelRaceGroup(new DriveStraight(driveTrain, Mode.DISTANCE, 157.311, .8), new Intake(ballIntake)),
+        new DriveStraight(driveTrain, Mode.DISTANCE, -157.311, -0.8), // TODO: Fix
+                                                                      // DriveStraight to
+                                                                      // run backwards
         new ParallelCommandGroup(new TimedShoot(shooter, 1), new Aim(shooter)),
         new ParallelRaceGroup(new TimedShoot(shooter, 3), new RunHopper(hopper), new RunTower(tower))
 

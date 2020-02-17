@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
+import static frc.robot.Constants.DriveConstants.ENCODER_DISTANCE_PER_PULSE;
 
 public class DriveStraight extends CommandBase {
   private DriveTrain _driveTrain;
@@ -25,7 +26,7 @@ public class DriveStraight extends CommandBase {
   public DriveStraight(final DriveTrain driveTrain, final Mode mode, final double limit, final double speed) {
     _driveTrain = driveTrain;
     _mode = mode;
-    _limit = limit;
+    _limit = limit * ENCODER_DISTANCE_PER_PULSE;
     _speed = speed;
 
     if (mode == Mode.TIME) {
