@@ -27,15 +27,16 @@ import static frc.robot.Constants.DriveConstants.ENCODER_DISTANCE_PER_PULSE;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class SimpleAuto extends SequentialCommandGroup {
+public class CooperationAuto extends SequentialCommandGroup {
 
   /**
    * Creates a new TestAuto.
    */
-  public SimpleAuto(final DriveTrain driveTrain, final Shooter shooter, final Hopper hopper, final Tower tower) {
+  public CooperationAuto(final DriveTrain driveTrain, final Shooter shooter, final Hopper hopper, final Tower tower) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new DriveStraight(driveTrain, Mode.DISTANCE, 12, 0.6), new Aim(shooter), new TimedShoot(shooter, 1.5),
-        new ParallelRaceGroup(new TimedShoot(shooter, 11.5), new RunHopper(hopper), new RunTower(tower)));
+    super(new Aim(shooter), new TimedShoot(shooter, 1.5),
+        new ParallelRaceGroup(new TimedShoot(shooter, 11.5), new RunHopper(hopper), new RunTower(tower)),
+        new DriveStraight(driveTrain, Mode.DISTANCE, 12, 0.6));
   }
 }

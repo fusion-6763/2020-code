@@ -1,4 +1,4 @@
+drive forward 1 foot
 (Start with 3 balls) Find the power port
 rev up the shooter, 1.5sec
 fire 3 balls, and keep shooting for 11.5 sec. feeder + hopper + shooter
-drive forward 1 foot
