@@ -8,19 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BallIntake;
-import static frc.robot.Constants.IntakeConstants.ENCODER_DISTANCE_TO_90DEG;
+import frc.robot.subsystems.Tower;
 
-public class ArmDown extends CommandBase {
-  private BallIntake _ballIntake;
+public class LoadBall extends CommandBase {
+  private Tower _tower;
 
   /**
-   * Creates a new ArmUp.
+   * Creates a new RunHopper.
    */
-  public ArmDown(final BallIntake ballIntake) {
-    _ballIntake = ballIntake;
+  public LoadBall(final Tower tower) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ballIntake);
+    _tower = tower;
+    addRequirements(_tower);
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +30,7 @@ public class ArmDown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    _ballIntake.armDown();
+    _tower.in();
   }
 
   // Called once the command ends or is interrupted.
@@ -42,10 +41,6 @@ public class ArmDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (_ballIntake.getEncoderPosition() >= ENCODER_DISTANCE_TO_90DEG) {
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 }

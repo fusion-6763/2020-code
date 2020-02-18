@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Aim;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DriveStraight.Mode;
+import frc.robot.commands.LoadBall;
 import frc.robot.commands.RunHopper;
-import frc.robot.commands.RunTower;
-import frc.robot.commands.TimedShoot;
+import frc.robot.commands.Shoot;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
@@ -31,7 +31,15 @@ public class SimpleAuto extends SequentialCommandGroup {
   public SimpleAuto(final DriveTrain driveTrain, final Shooter shooter, final Hopper hopper, final Tower tower) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new DriveStraight(driveTrain, Mode.DISTANCE, 12, 0.6), new Aim(shooter), new TimedShoot(shooter, 1.5),
-        new ParallelRaceGroup(new TimedShoot(shooter, 11.5), new RunHopper(hopper), new RunTower(tower)));
+    super(
+      new DriveStraight(driveTrain, Mode.DISTANCE, 12, 0.6),
+      new Aim(shooter),
+      new Shoot(shooter).withTimeout(1.5),
+      new ParallelRaceGroup(
+        new Shoot(shooter).withTimeout(11.5),
+        new RunHopper(hopper),
+        new LoadBall(tower)
+      )
+    );
   }
 }

@@ -7,12 +7,12 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import static frc.robot.Constants.IntakeConstants.HOPPER_PORT;
+import static frc.robot.Constants.IntakeConstants.HOPPER_SPEED;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Hopper extends SubsystemBase {
   private final Spark hopperMotor = new Spark(HOPPER_PORT);
@@ -22,7 +22,7 @@ public class Hopper extends SubsystemBase {
   }
 
   public void in() {
-    hopperMotor.set(1);
+    hopperMotor.set(HOPPER_SPEED);
   }
 
   public void neutral() {
