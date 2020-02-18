@@ -5,6 +5,7 @@
   "java.signatureHelp.enabled": true,
   "java.saveActions.organizeImports": true,
   "editor.tabSize": 2,
+  "editor.formatOnSave": false,
   "editor.insertSpaces": true,
   "editor.trimAutoWhitespace": true,
   "editor.lineNumbers": "on",
