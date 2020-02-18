@@ -39,7 +39,8 @@ public final class Constants {
     public static final int INTAKE_ARM_PORT = 9;
     public static final int INTAKE_SUCC_PORT = 10;
 
-    public static final int ENCODER_DISTANCE_TO_90DEG = 90;
+    // Encoder ticks per rotation = 1024, 90 degrees is equal to 1/4 of a rotation.
+    public static final int ENCODER_DISTANCE_TO_90DEG = 1024 / 4;
 
     public static final int HOPPER_PORT = 11;
 
