@@ -20,11 +20,13 @@ import frc.robot.commands.RunArm;
 import frc.robot.commands.RunArm.ArmMode;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.Shoot;
+import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Tower;
+import frc.robot.subsystems.Turret;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -35,7 +37,7 @@ public class SideAuto extends SequentialCommandGroup {
    * Creates a new SideAuto.
    */
   public SideAuto(final DriveTrain driveTrain, final Shooter shooter, final BallIntake ballIntake, final Hopper hopper,
-      final Tower tower) {
+      final Tower tower, final Turret turret, final Limelight limelight) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
@@ -44,12 +46,12 @@ public class SideAuto extends SequentialCommandGroup {
       ),
       new ParallelDeadlineGroup(
         new DriveStraight(driveTrain, Mode.DISTANCE, 161.16, .8),
-        new Aim(shooter),
+        new Aim(turret, limelight),
         new Intake(ballIntake)
       ),
       new ParallelCommandGroup(
         new Shoot(shooter).withTimeout(1),
-        new Intake(ballIntake), new Aim(shooter)
+        new Intake(ballIntake), new Aim(turret, limelight)
       ),
       new ParallelRaceGroup(
         new Shoot(shooter).withTimeout(3),
@@ -64,7 +66,7 @@ public class SideAuto extends SequentialCommandGroup {
       new DriveStraight(driveTrain, Mode.DISTANCE, -157.311, -0.8),
       new ParallelCommandGroup(
         new Shoot(shooter).withTimeout(1),
-        new Aim(shooter)
+        new Aim(turret, limelight)
       ),
       new ParallelRaceGroup(
         new Shoot(shooter).withTimeout(3),

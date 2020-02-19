@@ -11,22 +11,27 @@ import static frc.robot.Constants.CameraConstants.CHAMELEON_CAMERA_NAME;
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
-import frc.robot.commands.automodes.LimelightTestAuto;
+import frc.robot.commands.automodes.SideAuto;
+import frc.robot.commands.automodes.SimpleAuto;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Tower;
 import frc.robot.subsystems.Turret;
 
 /**
@@ -54,8 +59,8 @@ public class RobotContainer {
   private final BallIntake _ballIntake = new BallIntake();
   private final Shooter _shooter = new Shooter(_limelight);
   private final Turret _turret = new Turret();
-
-  private final Command _driveCommand = new LimelightTestAuto(_driveTrain, _limelight);
+  private final Hopper _hopper = new Hopper();
+  private final Tower _tower = new Tower();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -83,7 +88,19 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return _driveCommand;
+    double mode = NetworkTableInstance.getDefault().getTable("frcdashboard").getEntry("auto").getDouble(-1);
+
+    if(mode == 1){
+      // SimpleAuto
+      return new SimpleAuto(_driveTrain, _shooter, _hopper, _tower, _limelight, _turret);
+    }
+    else if(mode == 2){
+      // SideAuto
+      return new SideAuto(_driveTrain, _shooter, _ballIntake, _hopper, _tower, _turret, _limelight);
+    }
+    else{
+      return new WaitCommand(10);
+    }
   }
 
   public Command getTeleopCommand() {

@@ -8,17 +8,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.sensors.Limelight;
+import frc.robot.subsystems.Turret;
 
 public class Aim extends CommandBase {
-  private final Shooter _shooter;
+  private final Turret _turret;
+  private final Limelight _limelight;
 
   /**
    * Creates a new Aim.
    */
-  public Aim(final Shooter shooter) {
-    _shooter = shooter;
-    addRequirements(_shooter);
+  public Aim(final Turret turret, final Limelight limelight) {
+    _turret = turret;
+    _limelight = limelight;
+
+    addRequirements(_turret);
   }
 
   // Called when the command is initially scheduled.
@@ -29,20 +33,28 @@ public class Aim extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //TODO
-    //_shooter.rotate();
+    if(_limelight.getX() < -10){
+      _turret.set(0.6);
+    }
+    else if(_limelight.getX() > 10){
+      _turret.set(-0.6);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    _shooter.neutral();
+    _turret.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    final double position = _shooter.getX();
-    return position < 2 && position > -2;
+    if(_limelight.getX() > -10 && _limelight.getX() < 10){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
