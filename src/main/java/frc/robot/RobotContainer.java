@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
+import frc.robot.commands.automodes.JustDriveAuto;
 import frc.robot.commands.automodes.SideAuto;
 import frc.robot.commands.automodes.SimpleAuto;
 import frc.robot.sensors.ChameleonVision;
@@ -99,7 +99,7 @@ public class RobotContainer {
       return new SideAuto(_driveTrain, _shooter, _ballIntake, _hopper, _tower, _turret, _limelight);
     }
     else{
-      return new WaitCommand(10);
+      return new JustDriveAuto(_driveTrain);
     }
   }
 
