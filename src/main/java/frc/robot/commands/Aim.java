@@ -29,7 +29,8 @@ public class Aim extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    _shooter.rotate();
+    //TODO
+    //_shooter.rotate();
   }
 
   // Called once the command ends or is interrupted.

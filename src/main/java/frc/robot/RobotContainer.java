@@ -12,6 +12,7 @@ import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -26,6 +27,7 @@ import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -36,7 +38,7 @@ import frc.robot.subsystems.Shooter;
  */
 public class RobotContainer {
   private final XboxController _driverController = new XboxController(DRIVER_PORT);
-  private final XboxController _shooterController = new XboxController(SHOOTER_PORT);
+  private final Joystick _shooterController = new Joystick(SHOOTER_PORT);
   private final JoystickButton _leftShooterBumper = new JoystickButton(_shooterController,
       XboxController.Button.kBumperLeft.value);
   private final JoystickButton _rightShooterBumper = new JoystickButton(_shooterController,
@@ -51,6 +53,7 @@ public class RobotContainer {
   private final DriveTrain _driveTrain = new DriveTrain();
   private final BallIntake _ballIntake = new BallIntake();
   private final Shooter _shooter = new Shooter(_limelight);
+  private final Turret _turret = new Turret();
 
   private final Command _driveCommand = new LimelightTestAuto(_driveTrain, _limelight);
 
@@ -84,6 +87,6 @@ public class RobotContainer {
   }
 
   public Command getTeleopCommand() {
-    return new Teleop(_driveTrain, _driverController);
+    return new Teleop(_driveTrain, _turret, _driverController, _shooterController);
   }
 }

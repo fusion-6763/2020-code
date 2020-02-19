@@ -57,7 +57,7 @@ public final class Constants {
   public static final class ShooterConstants {
     public static final int SHOOTER_PORT1 = 5;
     public static final int SHOOTER_PORT2 = 6;
-    public static final int ROTATOR_PORT = 7;
+    public static final int TURRET_PORT = 7;
     public static final int MAX_NEO_RPM = 5700;
     public static final double POWER_PORT_HEIGHT_FT = 8.1875;
     public static final double ROBOT_HEIGHT_FT = 2;

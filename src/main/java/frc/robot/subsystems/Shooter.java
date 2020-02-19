@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import static frc.robot.Constants.ShooterConstants.LIMELIGHT_X_RANGE;
 import static frc.robot.Constants.ShooterConstants.MAX_NEO_RPM;
-import static frc.robot.Constants.ShooterConstants.ROTATOR_PORT;
 import static frc.robot.Constants.ShooterConstants.SHOOTER_PORT1;
 import static frc.robot.Constants.ShooterConstants.SHOOTER_PORT2;
 
@@ -18,7 +17,6 @@ public class Shooter extends SubsystemBase {
   // The spark that operates the motor.
   private final CANSparkMax motor1 = new CANSparkMax(SHOOTER_PORT1, MotorType.kBrushless);
   private final CANSparkMax motor2 = new CANSparkMax(SHOOTER_PORT2, MotorType.kBrushless);
-  private final CANSparkMax rotationMotor = new CANSparkMax(ROTATOR_PORT, MotorType.kBrushless);
 
   private final Limelight _limelight;
 
@@ -45,12 +43,6 @@ public class Shooter extends SubsystemBase {
   public void neutral() {
     motor1.set(0);
     motor2.set(0);
-    rotationMotor.set(0);
-  }
-
-  public void rotate() {
-    final double speed = _limelight.getX() / LIMELIGHT_X_RANGE;
-    rotationMotor.set(speed);
   }
 
   @Override
