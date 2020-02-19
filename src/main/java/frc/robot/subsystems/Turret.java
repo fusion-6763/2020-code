@@ -7,12 +7,13 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.Constants.ShooterConstants.TURRET_PORT;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import static frc.robot.Constants.ShooterConstants.TURRET_PORT;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Turret extends SubsystemBase {
   private final CANSparkMax _turretMotor = new CANSparkMax(TURRET_PORT, MotorType.kBrushless);
@@ -28,7 +29,7 @@ public class Turret extends SubsystemBase {
     _turretMotor.stopMotor();
   }
 
-  public void set(double value){
+  public void set(double value) {
     _turretMotor.set(value);
   }
 
