@@ -27,6 +27,7 @@ import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Tower;
 import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Arm;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -37,12 +38,12 @@ public class SideAuto extends SequentialCommandGroup {
    * Creates a new SideAuto.
    */
   public SideAuto(final DriveTrain driveTrain, final Shooter shooter, final BallIntake ballIntake, final Hopper hopper,
-      final Tower tower, final Turret turret, final Limelight limelight) {
+      final Tower tower, final Turret turret, final Limelight limelight, final Arm arm) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
       new ParallelRaceGroup(
-        new RunArm(ballIntake, ArmMode.UP), new Intake(ballIntake)
+        new RunArm(arm, ArmMode.UP), new Intake(ballIntake)
       ),
       new ParallelDeadlineGroup(
         new DriveStraight(driveTrain, Mode.DISTANCE, 161.16, .8),
