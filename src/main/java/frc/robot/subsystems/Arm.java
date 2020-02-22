@@ -11,22 +11,25 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class BallIntake extends SubsystemBase {
+public class Arm extends SubsystemBase {
   // The spark that operates the motor.
-  private final Spark succ = new Spark(INTAKE_SUCC_PORT);
+  private final CANSparkMax arm = new CANSparkMax(INTAKE_ARM_PORT, MotorType.kBrushless);
 
-  public BallIntake() {
-    setDefaultCommand(new RunCommand(this::neutral, this));
+  public void armUp() {
+    arm.set(1);
   }
 
-  // Inputs the ball a full speed backwards.
-  public void inputBall() {
-    succ.set(1);
-  };
+  public void armDown() {
+    arm.set(-1);
+  }
+
+  public double getEncoderPosition(){
+    return arm.getEncoder().getPosition();
+  }
 
   // Stops spinning the motor.
   public void neutral() {
-    succ.set(0);
+    arm.set(0);
   }
 
   @Override

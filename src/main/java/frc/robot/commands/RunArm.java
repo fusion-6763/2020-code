@@ -10,21 +10,21 @@ package frc.robot.commands;
 import static frc.robot.Constants.IntakeConstants.ENCODER_DISTANCE_TO_90DEG;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Arm;
 
 public class RunArm extends CommandBase {
-  private BallIntake _ballIntake;
+  private Arm _arm;
   private ArmMode _mode;
 
   /**
    * Creates a new ArmUp.
    */
-  public RunArm(final BallIntake ballIntake, final ArmMode mode) {
-    _ballIntake = ballIntake;
+  public RunArm(final Arm arm, final ArmMode mode) {
+    _arm = arm;
     _mode = mode;
 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ballIntake);
+    addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
@@ -36,9 +36,9 @@ public class RunArm extends CommandBase {
   @Override
   public void execute() {
     if (_mode == ArmMode.DOWN) {
-      _ballIntake.armDown();
+      _arm.armDown();
     } else {
-      _ballIntake.armUp();
+      _arm.armUp();
     }
   }
 
@@ -50,9 +50,9 @@ public class RunArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (_mode == ArmMode.DOWN && _ballIntake.getEncoderPosition() >= ENCODER_DISTANCE_TO_90DEG) {
+    if (_mode == ArmMode.DOWN && _arm.getEncoderPosition() >= ENCODER_DISTANCE_TO_90DEG) {
       return true;
-    } else if(_mode == ArmMode.UP && _ballIntake.getEncoderPosition() >= 0.0){
+    } else if(_mode == ArmMode.UP && _arm.getEncoderPosition() >= 0.0){
       return true;
     } else {
       return false;

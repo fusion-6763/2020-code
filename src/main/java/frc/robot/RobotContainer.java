@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Aim;
 import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
@@ -43,6 +44,7 @@ import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Tower;
 import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Arm;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -74,6 +76,7 @@ public class RobotContainer {
   private final Turret _turret = new Turret();
   private final Hopper _hopper = new Hopper();
   private final Tower _tower = new Tower();
+  private final Arm _arm = new Arm();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -94,10 +97,12 @@ public class RobotContainer {
     //_rightShooterBumper.whenHeld(new Shoot(_shooter));
     _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
     _trigger.whenHeld(new SequentialCommandGroup(new Shoot(_shooter).withTimeout(0.5), new ParallelCommandGroup(new Shoot(_shooter), new RunHopper(_hopper), new LoadBall(_tower))));
-    _thumbButton.whenHeld(new ParallelCommandGroup(new RunArm(_ballIntake, ArmMode.DOWN), new Intake(_ballIntake)));
-    _thumbButton.whenInactive(new RunArm(_ballIntake, ArmMode.UP));
-    ((edu.wpi.first.wpilibj2.command.button.Button) _topButton0.or(_topButton1).or(_topButton2).or(_topButton3))
-        .whenHeld(new Aim(_turret, _limelight));
+    _thumbButton.whenHeld(new ParallelCommandGroup(new RunArm(_arm, ArmMode.DOWN), new Intake(_ballIntake)));
+    _thumbButton.whenInactive(new RunArm(_arm, ArmMode.UP));
+    _topButton0.whenHeld(new Aim(_turret, _limelight));
+    _topButton1.whenHeld(new Aim(_turret, _limelight));
+    _topButton2.whenHeld(new Aim(_turret, _limelight));
+    _topButton3.whenHeld(new Aim(_turret, _limelight));
   }
 
   /**
@@ -114,7 +119,7 @@ public class RobotContainer {
     }
     else if(mode == 2){
       // SideAuto
-      return new SideAuto(_driveTrain, _shooter, _ballIntake, _hopper, _tower, _turret, _limelight);
+      return new SideAuto(_driveTrain, _shooter, _ballIntake, _hopper, _tower, _turret, _limelight, _arm);
     }
     else{
       return new JustDriveAuto(_driveTrain);
