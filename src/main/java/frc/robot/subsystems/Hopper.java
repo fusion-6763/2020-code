@@ -27,6 +27,10 @@ public class Hopper extends SubsystemBase {
     hopperMotor.set(ControlMode.PercentOutput, -HOPPER_SPEED);
   }
 
+  public void out(){
+    hopperMotor.set(ControlMode.PercentOutput, HOPPER_SPEED);
+  }
+
   public void neutral() {
     hopperMotor.set(ControlMode.PercentOutput, 0);
   }

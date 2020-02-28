@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Aim;
+import frc.robot.commands.BackHopper;
 import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
@@ -102,12 +103,14 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
+    //_xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
     _leftBumper.whenHeld(new Intake(_ballIntake));
     _rightBumper.whenHeld(new Outtake(_ballIntake));
 
     _trigger.whenHeld(new Shoot(_shooter));
     _topButton0.whenHeld(new RunHopper(_hopper));
+    _xButton.whenHeld(new BackHopper(_hopper));
+
     _topButton2.whenHeld(new LoadBall(_tower));
     _topButton3.whenHeld(new UnloadBall(_tower));
 
