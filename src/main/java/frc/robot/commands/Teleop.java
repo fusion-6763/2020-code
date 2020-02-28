@@ -41,12 +41,12 @@ public class Teleop extends CommandBase {
   @Override
   public void execute() {
     if (_driveStick.getRawButton(2)){ //Reverses robot driving if button is pressed. Button 2 = B
-      _myRobot.drive(_driveStick.getRawAxis(1), -_driveStick.getRawAxis(0));
+      _myRobot.drive(-_driveStick.getRawAxis(1), _driveStick.getRawAxis(0)*0.5);
     }
     else{
-      _myRobot.drive(-_driveStick.getRawAxis(1), _driveStick.getRawAxis(0));
+      _myRobot.drive(_driveStick.getRawAxis(1), _driveStick.getRawAxis(0)*0.5);
     }
-    _turret.set(_operatorController.getRawAxis(2));
+    _turret.set(-_operatorController.getRawAxis(2)*0.1);
   }
 
   // Called once the command ends or is interrupted.

@@ -28,6 +28,7 @@ import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
+import frc.robot.commands.TurretStraight;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.RunArm;
@@ -56,6 +57,7 @@ import frc.robot.subsystems.Arm;
 public class RobotContainer {
   private final XboxController _driverController = new XboxController(DRIVER_PORT);
   private final JoystickButton _xButton = new JoystickButton(_driverController, XboxController.Button.kX.value);
+  private final JoystickButton _leftBumper = new JoystickButton(_driverController, XboxController.Button.kBumperLeft.value);
 
   private final Joystick _shooterController = new Joystick(SHOOTER_PORT);
   private final JoystickButton _trigger = new JoystickButton(_shooterController, 1);
@@ -93,16 +95,16 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //_leftShooterBumper.whenHeld(new Intake(_ballIntake));
-    //_rightShooterBumper.whenHeld(new Shoot(_shooter));
     _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
-    _trigger.whenHeld(new SequentialCommandGroup(new Shoot(_shooter).withTimeout(0.5), new ParallelCommandGroup(new Shoot(_shooter), new RunHopper(_hopper), new LoadBall(_tower))));
-    _thumbButton.whenHeld(new ParallelCommandGroup(new RunArm(_arm, ArmMode.DOWN), new Intake(_ballIntake)));
-    _thumbButton.whenInactive(new RunArm(_arm, ArmMode.UP));
-    _topButton0.whenHeld(new Aim(_turret, _limelight));
-    _topButton1.whenHeld(new Aim(_turret, _limelight));
-    _topButton2.whenHeld(new Aim(_turret, _limelight));
-    _topButton3.whenHeld(new Aim(_turret, _limelight));
+    _leftBumper.whenHeld(new Intake(_ballIntake));
+
+    _trigger.whenHeld(new Shoot(_shooter));
+    _topButton0.whenHeld(new RunHopper(_hopper));
+    _topButton2.whenHeld(new LoadBall(_tower));
+
+    _topButton1.whenPressed(new Aim(_turret, _limelight));
+
+    _topButton3.whenPressed(new TurretStraight(_turret));
   }
 
   /**
@@ -128,5 +130,9 @@ public class RobotContainer {
 
   public Command getTeleopCommand() {
     return new Teleop(_driveTrain, _turret, _driverController, _shooterController);
+  }
+
+  public void resetTurretEncoder(){
+    _turret.resetEncoder();
   }
 }

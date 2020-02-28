@@ -11,22 +11,23 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.IntakeConstants.TOWER_PORT;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 public class Tower extends SubsystemBase {
-  private final Spark towerMotor = new Spark(TOWER_PORT);
+  private final VictorSPX towerMotor = new VictorSPX(TOWER_PORT);
 
   public Tower() {
     setDefaultCommand(new RunCommand(this::neutral, this));
   }
 
   public void in() {
-    towerMotor.set(1);
+    towerMotor.set(ControlMode.PercentOutput, -1);
   }
 
   public void neutral() {
-    towerMotor.set(0);
+    towerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

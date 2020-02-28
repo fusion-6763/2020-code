@@ -98,6 +98,8 @@ public class Robot extends TimedRobot {
 
     _myRobot.getTeleopCommand().schedule();
     _myRobot._ballTracker.startTracking();
+
+    _myRobot.resetTurretEncoder();
   }
 
   /**

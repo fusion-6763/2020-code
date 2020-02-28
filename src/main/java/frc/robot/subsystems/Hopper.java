@@ -10,23 +10,25 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.IntakeConstants.HOPPER_PORT;
 import static frc.robot.Constants.IntakeConstants.HOPPER_SPEED;
 
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 public class Hopper extends SubsystemBase {
-  private final Spark hopperMotor = new Spark(HOPPER_PORT);
+  private final VictorSPX hopperMotor = new VictorSPX(HOPPER_PORT);
 
   public Hopper() {
     setDefaultCommand(new RunCommand(this::neutral, this));
   }
 
   public void in() {
-    hopperMotor.set(HOPPER_SPEED);
+    hopperMotor.set(ControlMode.PercentOutput, -HOPPER_SPEED);
   }
 
   public void neutral() {
-    hopperMotor.set(0);
+    hopperMotor.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

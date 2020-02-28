@@ -1,19 +1,16 @@
 //Operates the robot motors that control the ball-shooting mechanism. 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.IntakeConstants.INTAKE_ARM_PORT;
 import static frc.robot.Constants.IntakeConstants.INTAKE_SUCC_PORT;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BallIntake extends SubsystemBase {
   // The spark that operates the motor.
-  private final Spark succ = new Spark(INTAKE_SUCC_PORT);
+  private final VictorSPX succ = new VictorSPX(INTAKE_SUCC_PORT);
 
   public BallIntake() {
     setDefaultCommand(new RunCommand(this::neutral, this));
@@ -21,12 +18,12 @@ public class BallIntake extends SubsystemBase {
 
   // Inputs the ball a full speed backwards.
   public void inputBall() {
-    succ.set(1);
+    succ.set(ControlMode.PercentOutput, 0.5);
   };
 
   // Stops spinning the motor.
   public void neutral() {
-    succ.set(0);
+    succ.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

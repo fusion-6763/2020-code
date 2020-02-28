@@ -27,16 +27,17 @@ public class Shooter extends SubsystemBase {
 
   // Launches that ball at full speed forwards.
   public void outputBall() {
-    final double rpm = _limelight.getRPM();
+    /*final double rpm = _limelight.getRPM();
     final double motorSpeed;
     if (rpm > MAX_NEO_RPM) {
       motorSpeed = 1;
     } else {
       motorSpeed = rpm / MAX_NEO_RPM;
-    }
+    }*/
+    double motorSpeed = 0.8;
 
-    motor1.set(motorSpeed);
-    motor2.set(-motorSpeed);
+    motor1.set(-motorSpeed);
+    motor2.set(motorSpeed);
   };
 
   // Stops spinning the motor.

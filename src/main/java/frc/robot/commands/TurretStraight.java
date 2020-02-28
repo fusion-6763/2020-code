@@ -8,22 +8,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.Turret;
 
+import static frc.robot.Constants.IntakeConstants.TURRET_CENTERED;
 import static frc.robot.Constants.IntakeConstants.TURRET_END;
 
-public class Aim extends CommandBase {
-  private final Turret _turret;
-  private final Limelight _limelight;
+public class TurretStraight extends CommandBase {
+  private Turret _turret;
 
   /**
-   * Creates a new Aim.
+   * Creates a new TurretStraight.
    */
-  public Aim(final Turret turret, final Limelight limelight) {
-    _turret = turret;
-    _limelight = limelight;
+  public TurretStraight(Turret turret) {
+    // Use addRequirements() here to declare subsystem dependencies.
 
+    _turret = turret;
     addRequirements(_turret);
   }
 
@@ -35,28 +34,23 @@ public class Aim extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(_limelight.getX() < 0){
-      _turret.set(0.04);
+    if(_turret.getEncoder() < TURRET_CENTERED - 1){
+      _turret.set(0.1);
     }
-    else if(_limelight.getX() > 0){
-      _turret.set(-0.04);
+    else if(_turret.getEncoder() > TURRET_CENTERED + 1){
+      _turret.set(-0.1);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    _turret.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(_turret.getEncoder() <= 0 || _turret.getEncoder() >= TURRET_END){
-      System.out.println("yep");
-      return true;
-    }
-    else if(_limelight.getX() > -3 && _limelight.getX() < 3){
+    if(_turret.getEncoder() < TURRET_CENTERED + 1 && _turret.getEncoder() > TURRET_CENTERED - 1){
       return true;
     }
     else{

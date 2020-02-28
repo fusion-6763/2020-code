@@ -2,13 +2,10 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.IntakeConstants.INTAKE_ARM_PORT;
-import static frc.robot.Constants.IntakeConstants.INTAKE_SUCC_PORT;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {

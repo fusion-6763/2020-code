@@ -36,16 +36,19 @@ public final class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final int INTAKE_ARM_PORT = 9;
-    public static final int INTAKE_SUCC_PORT = 10;
+    public static final int INTAKE_ARM_PORT = 6;
+    public static final int INTAKE_SUCC_PORT = 3;
 
     // Encoder ticks per rotation = 1024, 90 degrees is equal to 1/4 of a rotation.
     public static final int ENCODER_DISTANCE_TO_90DEG = 1024 / 4;
 
-    public static final int HOPPER_PORT = 11;
+    public static final int HOPPER_PORT = 1;
     public static final double HOPPER_SPEED = 0.7;
 
-    public static final int TOWER_PORT = 12;
+    public static final int TOWER_PORT = 2;
+
+    public static final double TURRET_CENTERED = 16;
+    public static final double TURRET_END = 19;
   }
 
   public static final class HopperConstants {
@@ -55,9 +58,9 @@ public final class Constants {
   }
 
   public static final class ShooterConstants {
-    public static final int SHOOTER_PORT1 = 5;
-    public static final int SHOOTER_PORT2 = 6;
-    public static final int TURRET_PORT = 7;
+    public static final int SHOOTER_PORT1 = 7;
+    public static final int SHOOTER_PORT2 = 8;
+    public static final int TURRET_PORT = 5;
     public static final int MAX_NEO_RPM = 5700;
     public static final double POWER_PORT_HEIGHT_FT = 8.1875;
     public static final double ROBOT_HEIGHT_FT = 2;

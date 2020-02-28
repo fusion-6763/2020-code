@@ -15,6 +15,7 @@ import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.TurretStraight;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hopper;
@@ -34,8 +35,7 @@ public class SimpleAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new DriveStraight(driveTrain, Mode.DISTANCE, 12, 0.6),
-      new Aim(turret, limelight),
+      new TurretStraight(turret),
       new Shoot(shooter).withTimeout(1.5),
       new ParallelRaceGroup(
         new Shoot(shooter).withTimeout(11.5),
