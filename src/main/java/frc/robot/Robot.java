@@ -75,8 +75,9 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     _myRobot.getAutonomousCommand().schedule();
-    _myRobot._limelight.setLights(LightMode.ON);
     _myRobot._ballTracker.startTracking();
+
+    _myRobot._turret.resetEncoder();
   }
 
   /**
@@ -98,8 +99,6 @@ public class Robot extends TimedRobot {
 
     _myRobot.getTeleopCommand().schedule();
     _myRobot._ballTracker.startTracking();
-
-    _myRobot.resetTurretEncoder();
   }
 
   /**

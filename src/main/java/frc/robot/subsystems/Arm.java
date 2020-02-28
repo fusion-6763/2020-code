@@ -13,11 +13,15 @@ public class Arm extends SubsystemBase {
   private final CANSparkMax arm = new CANSparkMax(INTAKE_ARM_PORT, MotorType.kBrushless);
 
   public void armUp() {
-    arm.set(1);
+    arm.set(-0.3);
   }
 
   public void armDown() {
-    arm.set(-1);
+    arm.set(0.3);
+  }
+
+  public void set(double value){
+    arm.set(value);
   }
 
   public double getEncoderPosition(){

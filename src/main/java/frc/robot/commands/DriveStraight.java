@@ -26,7 +26,12 @@ public class DriveStraight extends CommandBase {
   public DriveStraight(final DriveTrain driveTrain, final Mode mode, final double limit, final double speed) {
     _driveTrain = driveTrain;
     _mode = mode;
-    _limit = limit * ENCODER_DISTANCE_PER_PULSE;
+    if(mode == Mode.DISTANCE){
+      _limit = limit * ENCODER_DISTANCE_PER_PULSE;
+    }
+    else{
+      _limit = limit;
+    }
     _speed = speed;
 
     if (mode == Mode.TIME) {
@@ -81,7 +86,6 @@ public class DriveStraight extends CommandBase {
     else {
       _driveTrain.drive(_speed, 0.0);
     }
-    System.out.println("Run");
   }
 
   // Called once the command ends or is interrupted.

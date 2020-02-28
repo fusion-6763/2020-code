@@ -7,8 +7,11 @@
 
 package frc.robot.commands.automodes;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Aim;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DriveStraight.Mode;
@@ -36,12 +39,14 @@ public class SimpleAuto extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(
       new TurretStraight(turret),
-      new Shoot(shooter).withTimeout(1.5),
-      new ParallelRaceGroup(
-        new Shoot(shooter).withTimeout(11.5),
+      new Aim(turret, limelight),
+      new ScheduleCommand(new Shoot(shooter)),
+      new WaitCommand(0.5),
+      new ParallelCommandGroup(
         new RunHopper(hopper),
         new LoadBall(tower)
-      )
+      ).withTimeout(5),
+      new DriveStraight(driveTrain, Mode.TIME, 0.5, 0.8)
     );
   }
 }

@@ -29,8 +29,10 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.TurretStraight;
+import frc.robot.commands.UnloadBall;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.LoadBall;
+import frc.robot.commands.Outtake;
 import frc.robot.commands.RunArm;
 import frc.robot.commands.RunArm.ArmMode;
 import frc.robot.commands.automodes.JustDriveAuto;
@@ -58,6 +60,8 @@ public class RobotContainer {
   private final XboxController _driverController = new XboxController(DRIVER_PORT);
   private final JoystickButton _xButton = new JoystickButton(_driverController, XboxController.Button.kX.value);
   private final JoystickButton _leftBumper = new JoystickButton(_driverController, XboxController.Button.kBumperLeft.value);
+  private final JoystickButton _rightBumper = new JoystickButton(_driverController, XboxController.Button.kBumperRight.value);
+
 
   private final Joystick _shooterController = new Joystick(SHOOTER_PORT);
   private final JoystickButton _trigger = new JoystickButton(_shooterController, 1);
@@ -75,7 +79,10 @@ public class RobotContainer {
   private final DriveTrain _driveTrain = new DriveTrain();
   private final BallIntake _ballIntake = new BallIntake();
   private final Shooter _shooter = new Shooter(_limelight);
-  private final Turret _turret = new Turret();
+
+  // | Public for a reason
+  // v
+  public final Turret _turret = new Turret();
   private final Hopper _hopper = new Hopper();
   private final Tower _tower = new Tower();
   private final Arm _arm = new Arm();
@@ -97,14 +104,14 @@ public class RobotContainer {
   private void configureButtonBindings() {
     _xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
     _leftBumper.whenHeld(new Intake(_ballIntake));
+    _rightBumper.whenHeld(new Outtake(_ballIntake));
 
     _trigger.whenHeld(new Shoot(_shooter));
     _topButton0.whenHeld(new RunHopper(_hopper));
     _topButton2.whenHeld(new LoadBall(_tower));
+    _topButton3.whenHeld(new UnloadBall(_tower));
 
     _topButton1.whenPressed(new Aim(_turret, _limelight));
-
-    _topButton3.whenPressed(new TurretStraight(_turret));
   }
 
   /**
@@ -113,7 +120,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    double mode = NetworkTableInstance.getDefault().getTable("frcdashboard").getEntry("auto").getDouble(-1);
+    /*double mode = NetworkTableInstance.getDefault().getTable("frcdashboard").getEntry("auto").getDouble(-1);
 
     if(mode == 1){
       // SimpleAuto
@@ -125,14 +132,12 @@ public class RobotContainer {
     }
     else{
       return new JustDriveAuto(_driveTrain);
-    }
+    }*/
+
+    return new SimpleAuto(_driveTrain, _shooter, _hopper, _tower, _limelight, _turret);
   }
 
   public Command getTeleopCommand() {
-    return new Teleop(_driveTrain, _turret, _driverController, _shooterController);
-  }
-
-  public void resetTurretEncoder(){
-    _turret.resetEncoder();
+    return new Teleop(_driveTrain, _turret, _driverController, _shooterController, _arm);
   }
 }
