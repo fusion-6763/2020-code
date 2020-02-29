@@ -7,6 +7,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
@@ -14,12 +15,16 @@ public class Arm extends SubsystemBase {
   private final CANSparkMax arm = new CANSparkMax(INTAKE_ARM_PORT, MotorType.kBrushless);
   private final CANEncoder armEncoder = arm.getEncoder();
 
+  public Arm(){
+    setDefaultCommand(new RunCommand(this::neutral));
+  }
+
   public void armUp() {
-    arm.set(-0.3);
+    arm.set(-0.2);
   }
 
   public void armDown() {
-    arm.set(0.3);
+    arm.set(0.2);
   }
 
   public void set(double value){

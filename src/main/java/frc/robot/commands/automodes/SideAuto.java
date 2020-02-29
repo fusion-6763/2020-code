@@ -16,8 +16,8 @@ import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.Intake;
 import frc.robot.commands.LoadBall;
-import frc.robot.commands.RunArm;
-import frc.robot.commands.RunArm.ArmMode;
+//import frc.robot.commands.RunArm;
+//import frc.robot.commands.RunArm.ArmMode;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.Shoot;
 import frc.robot.sensors.Limelight;
@@ -42,9 +42,9 @@ public class SideAuto extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
-      new ParallelRaceGroup(
+      /*new ParallelRaceGroup(
         new RunArm(arm, ArmMode.UP), new Intake(ballIntake)
-      ),
+      ),*/
       new ParallelDeadlineGroup(
         new DriveStraight(driveTrain, Mode.DISTANCE, 161.16, .8),
         new Aim(turret, limelight),

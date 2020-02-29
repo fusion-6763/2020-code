@@ -86,8 +86,6 @@ public class Robot extends TimedRobot {
     _myRobot._ballTracker.startTracking();
 
     _myRobot._turret.resetEncoder();
-
-    _myRobot._arm.resetEncoder();
   }
 
   /**

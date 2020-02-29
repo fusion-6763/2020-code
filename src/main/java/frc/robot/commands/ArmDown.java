@@ -7,24 +7,20 @@
 
 package frc.robot.commands;
 
-import static frc.robot.Constants.IntakeConstants.ENCODER_DISTANCE_TO_90DEG;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
-public class RunArm extends CommandBase {
-  private Arm _arm;
-  private ArmMode _mode;
+public class ArmDown extends CommandBase {
+  Arm _arm;
 
   /**
-   * Creates a new ArmUp.
+   * Creates a new ArmDown.
    */
-  public RunArm(final Arm arm, final ArmMode mode) {
+  public ArmDown(Arm arm) {
     _arm = arm;
-    _mode = mode;
 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arm);
+    addRequirements(_arm);
   }
 
   // Called when the command is initially scheduled.
@@ -35,11 +31,7 @@ public class RunArm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (_mode == ArmMode.DOWN) {
-      _arm.armDown();
-    } else {
-      _arm.armUp();
-    }
+    _arm.armDown();
   }
 
   // Called once the command ends or is interrupted.
@@ -50,16 +42,11 @@ public class RunArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (_mode == ArmMode.DOWN && _arm.getEncoderPosition() >= ENCODER_DISTANCE_TO_90DEG) {
-      return true;
-    } else if(_mode == ArmMode.UP && _arm.getEncoderPosition() >= 0.0){
-      return true;
-    } else {
+    if(_arm.getEncoderPosition() < -10){
       return false;
     }
-  }
-
-  public enum ArmMode {
-    UP, DOWN
+    else{
+      return true;
+    }
   }
 }

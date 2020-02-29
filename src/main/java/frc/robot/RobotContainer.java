@@ -36,8 +36,6 @@ import frc.robot.commands.UnloadBall;
 import frc.robot.commands.RunHopper;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.Outtake;
-import frc.robot.commands.RunArm;
-import frc.robot.commands.RunArm.ArmMode;
 import frc.robot.commands.automodes.JustDriveAuto;
 import frc.robot.commands.automodes.SideAuto;
 import frc.robot.commands.automodes.SimpleAuto;
@@ -160,7 +158,7 @@ public class RobotContainer {
       return new JustDriveAuto(_driveTrain);
     }*/
 
-    return new SimpleAuto(_driveTrain, _shooter, _hopper, _tower, _limelight, _turret);
+    return new SimpleAuto(_arm, _driveTrain, _shooter, _hopper, _tower, _limelight, _turret);
   }
 
   public Command getTeleopCommand() {
