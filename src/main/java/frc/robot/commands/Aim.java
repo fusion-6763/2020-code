@@ -43,6 +43,9 @@ public class Aim extends CommandBase {
     else if(_limelight.getX() > 0){
       _turret.set(-0.04);
     }
+    else{
+      _turret.set(0);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -56,8 +59,14 @@ public class Aim extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(_turret.getEncoder() <= 0 || _turret.getEncoder() >= TURRET_END){
-      System.out.println("yep");
+    if(_turret.getEncoder() <= 0 && _limelight.getX() > 0){
+      System.out.println("Too far right");
+
+      return true;
+    }
+    else if(_turret.getEncoder() >= TURRET_END && _limelight.getX() < 0){
+      System.out.println("Too far left");
+
       return true;
     }
     else if(_limelight.getX() > -3 && _limelight.getX() < 3){

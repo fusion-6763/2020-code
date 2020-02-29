@@ -12,7 +12,9 @@ import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 import java.awt.Button;
 
@@ -42,6 +44,7 @@ import frc.robot.commands.automodes.SimpleAuto;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
 import frc.robot.sensors.Limelight;
+import frc.robot.sensors.Limelight.LightMode;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hopper;
@@ -86,7 +89,10 @@ public class RobotContainer {
   public final Turret _turret = new Turret();
   private final Hopper _hopper = new Hopper();
   private final Tower _tower = new Tower();
-  private final Arm _arm = new Arm();
+  
+  // | Public for a reason
+  // v
+  public final Arm _arm = new Arm();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -107,14 +113,31 @@ public class RobotContainer {
     _leftBumper.whenHeld(new Intake(_ballIntake));
     _rightBumper.whenHeld(new Outtake(_ballIntake));
 
-    _trigger.whenHeld(new Shoot(_shooter));
+    _trigger.whenHeld(
+      new ParallelCommandGroup(
+        new SequentialCommandGroup(
+          new InstantCommand(() -> _limelight.setLights(LightMode.ON)),
+          new WaitCommand(0.3),
+          new Aim(_turret, _limelight)
+        ),
+        new Shoot(_shooter)
+      )
+    ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));
+
     _topButton0.whenHeld(new RunHopper(_hopper));
     _xButton.whenHeld(new BackHopper(_hopper));
 
     _topButton2.whenHeld(new LoadBall(_tower));
     _topButton3.whenHeld(new UnloadBall(_tower));
 
-    _topButton1.whenPressed(new Aim(_turret, _limelight));
+    _topButton1.whenPressed(
+      new SequentialCommandGroup(
+        new InstantCommand(() -> _limelight.setLights(LightMode.ON)),
+        new WaitCommand(0.3),
+        new Aim(_turret, _limelight),
+        new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT))
+      )
+    );
   }
 
   /**

@@ -7,6 +7,8 @@
 
 package frc.robot.commands.automodes;
 
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
@@ -20,6 +22,7 @@ import frc.robot.commands.RunHopper;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.TurretStraight;
 import frc.robot.sensors.Limelight;
+import frc.robot.sensors.Limelight.LightMode;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
@@ -34,19 +37,24 @@ public class SimpleAuto extends SequentialCommandGroup {
   /**
    * Creates a new TestAuto.
    */
-  public SimpleAuto(final DriveTrain driveTrain, final Shooter shooter, final Hopper hopper, final Tower tower, final Limelight limelight, final Turret turret) {
+  public SimpleAuto(final DriveTrain driveTrain, final Shooter shooter, final Hopper hopper, final Tower tower, final Limelight limelight, final Turret turret) {        
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
       new TurretStraight(turret),
-      new Aim(turret, limelight),
+      new SequentialCommandGroup(
+        new InstantCommand(() -> limelight.setLights(LightMode.ON)),
+        new WaitCommand(0.3),
+        new Aim(turret, limelight),
+        new InstantCommand(() -> limelight.setLights(LightMode.DEFAULT))
+      ),
       new ScheduleCommand(new Shoot(shooter)),
       new WaitCommand(0.5),
       new ParallelCommandGroup(
         new RunHopper(hopper),
         new LoadBall(tower)
       ).withTimeout(5),
-      new DriveStraight(driveTrain, Mode.TIME, 0.5, 0.8)
+      new DriveStraight(driveTrain, Mode.TIME, 5, -0.3)
     );
   }
 }

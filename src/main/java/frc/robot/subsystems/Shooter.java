@@ -34,7 +34,7 @@ public class Shooter extends SubsystemBase {
     } else {
       motorSpeed = rpm / MAX_NEO_RPM;
     }*/
-    double motorSpeed = 0.8;
+    double motorSpeed = 1;
 
     motor1.set(-motorSpeed);
     motor2.set(motorSpeed);

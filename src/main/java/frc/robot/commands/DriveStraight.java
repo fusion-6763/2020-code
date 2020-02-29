@@ -65,9 +65,9 @@ public class DriveStraight extends CommandBase {
     // The turning direction is reversed if the robot is moving backwards.
     if (_driveTrain.getAngle() > 2) {
       if (_speed > 0) {
-        _driveTrain.drive(_speed, -0.4);
+        _driveTrain.drive(-_speed, -0.4);
       } else {
-        _driveTrain.drive(_speed, 0.4);
+        _driveTrain.drive(-_speed, 0.4);
       }
     }
 
@@ -76,15 +76,15 @@ public class DriveStraight extends CommandBase {
     // The turning direction is reversed if the robot is moving backwards.
     else if (_driveTrain.getAngle() < -2) {
       if (_speed > 0) {
-        _driveTrain.drive(_speed, 0.4);
+        _driveTrain.drive(-_speed, 0.4);
       } else {
-        _driveTrain.drive(_speed, -0.4);
+        _driveTrain.drive(-_speed, -0.4);
       }
     }
 
     // If the robot isn't crooked, just drive straight.
     else {
-      _driveTrain.drive(_speed, 0.0);
+      _driveTrain.drive(-_speed, 0.0);
     }
   }
 

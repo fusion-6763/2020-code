@@ -43,7 +43,7 @@ public final class Constants {
     public static final int ENCODER_DISTANCE_TO_90DEG = 1024 / 4;
 
     public static final int HOPPER_PORT = 1;
-    public static final double HOPPER_SPEED = 0.7;
+    public static final double HOPPER_SPEED = 0.6;
 
     public static final int TOWER_PORT = 2;
 
