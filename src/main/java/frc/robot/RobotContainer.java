@@ -73,6 +73,13 @@ public class RobotContainer {
   private final JoystickButton _topButton2 = new JoystickButton(_shooterController, 5);
   private final JoystickButton _topButton3 = new JoystickButton(_shooterController, 6);
 
+  private final JoystickButton _7 = new JoystickButton(_shooterController, 7);
+  private final JoystickButton _8 = new JoystickButton(_shooterController, 8);
+  private final JoystickButton _9 = new JoystickButton(_shooterController, 9);
+  private final JoystickButton _10 = new JoystickButton(_shooterController, 10);
+  private final JoystickButton _11 = new JoystickButton(_shooterController, 11);
+  private final JoystickButton _12 = new JoystickButton(_shooterController, 12);
+
   private final DriveCamera _driveCamera = new DriveCamera();
   public final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
   public final Limelight _limelight = new Limelight();
@@ -136,6 +143,13 @@ public class RobotContainer {
         new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT))
       )
     );
+
+    _7.whileActiveContinuous(new InstantCommand(()-> _shooter.speed(0.2), _shooter));
+    _8.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(0.4), _shooter));
+    _9.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(0.6), _shooter));
+    _10.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(0.8), _shooter));
+    _11.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(1), _shooter));
+    _12.whileActiveContinuous(new Aim(_turret, _limelight));
   }
 
   /**

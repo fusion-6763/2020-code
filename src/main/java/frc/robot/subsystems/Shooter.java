@@ -40,6 +40,11 @@ public class Shooter extends SubsystemBase {
     motor2.set(motorSpeed);
   };
 
+  public void speed(final double motorSpeed) {
+    System.out.println("Yes");
+    motor1.set(-motorSpeed);
+    motor2.set(motorSpeed);
+  }
   // Stops spinning the motor.
   public void neutral() {
     motor1.set(0);

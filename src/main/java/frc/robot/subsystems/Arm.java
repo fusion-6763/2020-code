@@ -16,7 +16,7 @@ public class Arm extends SubsystemBase {
   private final CANEncoder armEncoder = arm.getEncoder();
 
   public Arm(){
-    setDefaultCommand(new RunCommand(this::neutral));
+    setDefaultCommand(new RunCommand(this::neutral, this));
   }
 
   public void armUp() {
