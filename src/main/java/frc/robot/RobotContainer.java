@@ -14,6 +14,7 @@ import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 import java.awt.Button;
@@ -144,12 +145,12 @@ public class RobotContainer {
       )
     );
 
-    _7.whileActiveContinuous(new InstantCommand(()-> _shooter.speed(0.2), _shooter));
-    _8.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(0.4), _shooter));
-    _9.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(0.6), _shooter));
-    _10.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(0.8), _shooter));
-    _11.whileActiveContinuous(new InstantCommand(() -> _shooter.speed(1), _shooter));
-    _12.whileActiveContinuous(new Aim(_turret, _limelight));
+    _7.whenPressed(new RunCommand(()-> _shooter.speed(0.2), _shooter));
+    _8.whenPressed(new RunCommand(() -> _shooter.speed(0.4), _shooter));
+    _9.whenPressed(new RunCommand(() -> _shooter.speed(0.6), _shooter));
+    _10.whenPressed(new RunCommand(() -> _shooter.speed(0.8), _shooter));
+    _11.whenPressed(new RunCommand(() -> _shooter.speed(1), _shooter));
+    _12.whenPressed(new Aim(_turret, _limelight));
   }
 
   /**
