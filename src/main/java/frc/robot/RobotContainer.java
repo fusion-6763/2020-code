@@ -11,46 +11,37 @@ import static frc.robot.Constants.CameraConstants.CHAMELEON_CAMERA_NAME;
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-
-import java.awt.Button;
-
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Aim;
 import frc.robot.commands.BackHopper;
-import frc.robot.commands.FindPowerCell;
 import frc.robot.commands.Intake;
-import frc.robot.commands.Shoot;
-import frc.robot.commands.Teleop;
-import frc.robot.commands.TurretStraight;
-import frc.robot.commands.UnloadBall;
-import frc.robot.commands.RunHopper;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.Outtake;
-import frc.robot.commands.automodes.JustDriveAuto;
-import frc.robot.commands.automodes.SideAuto;
+import frc.robot.commands.RunHopper;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.Teleop;
+import frc.robot.commands.UnloadBall;
 import frc.robot.commands.automodes.SimpleAuto;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
 import frc.robot.sensors.Limelight;
 import frc.robot.sensors.Limelight.LightMode;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Tower;
 import frc.robot.subsystems.Turret;
-import frc.robot.subsystems.Arm;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -121,11 +112,7 @@ public class RobotContainer {
 
     _trigger.whenHeld(
       new ParallelCommandGroup(
-        new SequentialCommandGroup(
-          new InstantCommand(() -> _limelight.setLights(LightMode.ON)),
-          new WaitCommand(0.3),
-          new Aim(_turret, _limelight)
-        ),
+        new Aim(_turret, _limelight),
         new Shoot(_shooter)
       )
     ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));

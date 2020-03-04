@@ -7,73 +7,82 @@
 
 package frc.robot.commands;
 
+import static frc.robot.Constants.IntakeConstants.TURRET_END;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.sensors.Limelight;
 import frc.robot.sensors.Limelight.LightMode;
 import frc.robot.subsystems.Turret;
 
-import static frc.robot.Constants.IntakeConstants.TURRET_END;
-
-public class Aim extends CommandBase {
-  private final Turret _turret;
-  private final Limelight _limelight;
-
-  /**
-   * Creates a new Aim.
-   */
-  public Aim(final Turret turret, final Limelight limelight) {
-    _turret = turret;
-    _limelight = limelight;
-
-    addRequirements(_turret);
+public class Aim extends SequentialCommandGroup {
+  public Aim(Turret turret, Limelight limelight){
+    super(
+      new InstantCommand(() -> limelight.setLights(LightMode.ON)),
+      new WaitCommand(0.3),
+      new RawAim(turret, limelight),
+      new InstantCommand(() -> limelight.setLights(LightMode.DEFAULT))
+    );
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    _limelight.setLights(LightMode.ON);
-  }
+  static private class RawAim extends CommandBase{
+    private final Turret _turret;
+    private final Limelight _limelight;
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if(_limelight.getX() < 0){
-      _turret.set(0.04);
-    }
-    else if(_limelight.getX() > 0){
-      _turret.set(-0.04);
-    }
-    else{
-      _turret.set(0);
-    }
-  }
+    /**
+     * Creates a new Aim.
+     */
+    public RawAim(final Turret turret, final Limelight limelight) {
+      _turret = turret;
+      _limelight = limelight;
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    _turret.stop();
-
-    _limelight.setLights(LightMode.DEFAULT);
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    if(_turret.getEncoder() <= 0 && _limelight.getX() > 0){
-      System.out.println("Too far right");
-
-      return true;
+      addRequirements(_turret);
     }
-    else if(_turret.getEncoder() >= TURRET_END && _limelight.getX() < 0){
-      System.out.println("Too far left");
 
-      return true;
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+      _limelight.setLights(LightMode.ON);
     }
-    else if(_limelight.getX() > -3 && _limelight.getX() < 3){
-      return true;
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+      if (_limelight.getX() < 0) {
+        _turret.set(0.04);
+      } else if (_limelight.getX() > 0) {
+        _turret.set(-0.04);
+      } else {
+        _turret.set(0);
+      }
     }
-    else{
-      return false;
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+      _turret.stop();
+
+      _limelight.setLights(LightMode.DEFAULT);
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+      if (_turret.getEncoder() <= 0 && _limelight.getX() > 0) {
+        System.out.println("Too far right");
+
+        return true;
+      } else if (_turret.getEncoder() >= TURRET_END && _limelight.getX() < 0) {
+        System.out.println("Too far left");
+
+        return true;
+      } else if (_limelight.getX() > -3 && _limelight.getX() < 3) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 }
