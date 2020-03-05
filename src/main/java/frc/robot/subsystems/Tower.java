@@ -23,11 +23,11 @@ public class Tower extends SubsystemBase {
   }
 
   public void in() {
-    towerMotor.set(ControlMode.PercentOutput, -1);
+    towerMotor.set(ControlMode.PercentOutput, -0.7);
   }
 
   public void out(){
-    towerMotor.set(ControlMode.PercentOutput, 1);
+    towerMotor.set(ControlMode.PercentOutput, 0.7);
   }
 
   public void neutral() {

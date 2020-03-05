@@ -78,7 +78,7 @@ public class Aim extends SequentialCommandGroup {
         System.out.println("Too far left");
 
         return true;
-      } else if (_limelight.getX() > -3 && _limelight.getX() < 3) {
+      } else if (_limelight.getX() > -2 && _limelight.getX() < 2) {
         return true;
       } else {
         return false;

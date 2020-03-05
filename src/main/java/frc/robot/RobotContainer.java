@@ -132,11 +132,11 @@ public class RobotContainer {
       )
     );
 
-    _7.whenPressed(new RunCommand(()-> _shooter.speed(0.2), _shooter));
-    _8.whenPressed(new RunCommand(() -> _shooter.speed(0.4), _shooter));
-    _9.whenPressed(new RunCommand(() -> _shooter.speed(0.6), _shooter));
-    _10.whenPressed(new RunCommand(() -> _shooter.speed(0.8), _shooter));
-    _11.whenPressed(new RunCommand(() -> _shooter.speed(1), _shooter));
+    _7.whenHeld(new RunCommand(()-> _shooter.speed(0.7), _shooter));
+    _8.whenHeld(new RunCommand(() -> _shooter.speed(0.75), _shooter));
+    _9.whenHeld(new RunCommand(() -> _shooter.speed(0.8), _shooter));
+    _10.whenHeld(new RunCommand(() -> _shooter.speed(0.85), _shooter));
+    _11.whenHeld(new RunCommand(() -> _shooter.speed(0.9), _shooter));
     _12.whenPressed(new Aim(_turret, _limelight));
   }
 
