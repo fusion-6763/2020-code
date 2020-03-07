@@ -1,47 +1,29 @@
 //Operates the robot motors that control the ball-shooting mechanism. 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.IntakeConstants.INTAKE_ARM_PORT;
+import static frc.robot.Constants.IntakeConstants.INTAKE_ARM_SOLENOID_PORT_L;
+import static frc.robot.Constants.IntakeConstants.INTAKE_ARM_SOLENOID_PORT_R;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.Solenoid;
 
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
   // The spark that operates the motor.
-  private final CANSparkMax arm = new CANSparkMax(INTAKE_ARM_PORT, MotorType.kBrushless);
-  private final CANEncoder armEncoder = arm.getEncoder();
+  private final Solenoid arm1 = new Solenoid(INTAKE_ARM_SOLENOID_PORT_L);
+  private final Solenoid arm2 = new Solenoid(INTAKE_ARM_SOLENOID_PORT_R);
 
   public Arm(){
-    setDefaultCommand(new RunCommand(this::neutral, this));
   }
 
   public void armUp() {
-    arm.set(-0.2);
+    arm1.set(false);
+    arm2.set(false);
   }
 
   public void armDown() {
-    arm.set(0.2);
-  }
-
-  public void set(double value){
-    arm.set(value);
-  }
-
-  public double getEncoderPosition(){
-    return armEncoder.getPosition();
-  }
-
-  public void resetEncoder(){
-    armEncoder.setPosition(0);
-  }
-
-  // Stops spinning the motor.
-  public void neutral() {
-    arm.set(0);
+    arm1.set(true);
+    arm2.set(true);
   }
 
   @Override

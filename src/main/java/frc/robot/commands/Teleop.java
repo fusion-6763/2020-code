@@ -49,8 +49,6 @@ public class Teleop extends CommandBase {
     else{
       _myRobot.drive(_driveStick.getRawAxis(1)*0.8, _driveStick.getRawAxis(0)*0.5);
     }
-
-    _arm.set(_driveStick.getRawAxis(5)*0.3);
   }
 
   // Called once the command ends or is interrupted.

@@ -42,11 +42,6 @@ public class ArmDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(_arm.getEncoderPosition() < -10){
-      return false;
-    }
-    else{
-      return true;
-    }
+    return true;
   }
 }

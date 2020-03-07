@@ -32,8 +32,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our autonomous chooser on the dashboard.
-
-    _myRobot._arm.resetEncoder();
   }
 
   /**
@@ -55,8 +53,6 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
-    System.out.println(_myRobot._arm.getEncoderPosition());
   }
 
   /**
