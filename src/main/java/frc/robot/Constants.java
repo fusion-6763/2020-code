@@ -57,6 +57,10 @@ public final class Constants {
 
   public static final class TowerConstants {
   }
+  public static final class ClimberConstants {
+    public static final int CLIMBER_SOLENOID_PORT_OUT = 3;
+    public static final int CLIMBER_SOLENOID_PORT_IN = 4;
+  }
 
   public static final class ShooterConstants {
     public static final int SHOOTER_PORT1 = 7;
