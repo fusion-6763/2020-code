@@ -22,11 +22,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Aim;
-import frc.robot.commands.BackHopper;
 import frc.robot.commands.Intake;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.Outtake;
-import frc.robot.commands.RunHopper;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.UnloadBall;
@@ -37,10 +35,9 @@ import frc.robot.sensors.Limelight;
 import frc.robot.sensors.Limelight.LightMode;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.BallLoader;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Tower;
 import frc.robot.subsystems.Turret;
 
 /**
@@ -84,8 +81,8 @@ public class RobotContainer {
   // | Public for a reason
   // v
   public final Turret _turret = new Turret();
-  private final Hopper _hopper = new Hopper();
-  private final Tower _tower = new Tower();
+  
+  private final BallLoader _ballLoader = new BallLoader();
   
   // | Public for a reason
   // v
@@ -117,11 +114,8 @@ public class RobotContainer {
       )
     ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));
 
-    _topButton0.whenHeld(new RunHopper(_hopper));
-    _xButton.whenHeld(new BackHopper(_hopper));
-
-    _topButton2.whenHeld(new LoadBall(_tower));
-    _topButton3.whenHeld(new UnloadBall(_tower));
+    _topButton2.whenHeld(new LoadBall(_ballLoader));
+    _topButton3.whenHeld(new UnloadBall(_ballLoader));
 
     _topButton1.whenPressed(
       new SequentialCommandGroup(
@@ -137,7 +131,8 @@ public class RobotContainer {
     _9.whenHeld(new RunCommand(() -> _shooter.speed(0.8), _shooter));
     _10.whenHeld(new RunCommand(() -> _shooter.speed(0.85), _shooter));
     _11.whenHeld(new RunCommand(() -> _shooter.speed(0.9), _shooter));
-    _12.whenPressed(new Aim(_turret, _limelight));
+
+    _12.whenPressed(new InstantCommand(_turret::resetEncoder));
   }
 
   /**
@@ -160,7 +155,7 @@ public class RobotContainer {
       return new JustDriveAuto(_driveTrain);
     }*/
 
-    return new SimpleAuto(_arm, _driveTrain, _shooter, _hopper, _tower, _limelight, _turret);
+    return new SimpleAuto(_arm, _driveTrain, _shooter, _ballLoader, _limelight, _turret);
   }
 
   public Command getTeleopCommand() {

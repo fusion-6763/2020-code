@@ -8,18 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Tower;
+import frc.robot.subsystems.BallLoader;
 
 public class UnloadBall extends CommandBase {
-  private Tower _tower;
+  private BallLoader _ballLoader;
 
   /**
    * Creates a new RunHopper.
    */
-  public UnloadBall(final Tower tower) {
+  public UnloadBall(final BallLoader ballLoader) {
     // Use addRequirements() here to declare subsystem dependencies.
-    _tower = tower;
-    addRequirements(_tower);
+    _ballLoader = ballLoader;
+    addRequirements(_ballLoader);
   }
 
   // Called when the command is initially scheduled.
@@ -30,7 +30,7 @@ public class UnloadBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    _tower.out();
+    _ballLoader.out();
   }
 
   // Called once the command ends or is interrupted.

@@ -13,15 +13,13 @@ import frc.robot.commands.Aim;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.LoadBall;
-import frc.robot.commands.RunHopper;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.TurretStraight;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.BallLoader;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Tower;
 import frc.robot.subsystems.Turret;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -32,7 +30,7 @@ public class SimpleAuto extends SequentialCommandGroup {
   /**
    * Creates a new TestAuto.
    */
-  public SimpleAuto(final Arm arm, final DriveTrain driveTrain, final Shooter shooter, final Hopper hopper, final Tower tower, final Limelight limelight, final Turret turret) {
+  public SimpleAuto(final Arm arm, final DriveTrain driveTrain, final Shooter shooter, final BallLoader ballLoader, final Limelight limelight, final Turret turret) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
@@ -40,8 +38,7 @@ public class SimpleAuto extends SequentialCommandGroup {
       new Aim(turret, limelight),
       new Shoot(shooter).withTimeout(0.5),
       new ParallelCommandGroup(
-        new RunHopper(hopper),
-        new LoadBall(tower),
+        new LoadBall(ballLoader),
         new Shoot(shooter)
       ).withTimeout(5),
       new DriveStraight(driveTrain, Mode.TIME, 5, -0.3)

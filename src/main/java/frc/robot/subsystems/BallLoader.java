@@ -7,32 +7,32 @@
 
 package frc.robot.subsystems;
 
-import static frc.robot.Constants.IntakeConstants.HOPPER_PORT;
 import static frc.robot.Constants.IntakeConstants.HOPPER_SPEED;
+import static frc.robot.Constants.IntakeConstants.LOADER_PORT;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+public class BallLoader extends SubsystemBase {
+  private final CANSparkMax coolMotor = new CANSparkMax(LOADER_PORT, MotorType.kBrushless);
 
-public class Hopper extends SubsystemBase {
-  private final VictorSPX hopperMotor = new VictorSPX(HOPPER_PORT);
-
-  public Hopper() {
+  public BallLoader() {
     setDefaultCommand(new RunCommand(this::neutral, this));
   }
 
   public void in() {
-    hopperMotor.set(ControlMode.PercentOutput, -HOPPER_SPEED);
+    coolMotor.set(-HOPPER_SPEED);
   }
 
   public void out(){
-    hopperMotor.set(ControlMode.PercentOutput, HOPPER_SPEED);
+    coolMotor.set(HOPPER_SPEED);
   }
 
   public void neutral() {
-    hopperMotor.set(ControlMode.PercentOutput, 0);
+    coolMotor.set(0);
   }
 
   @Override

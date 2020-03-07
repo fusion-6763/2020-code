@@ -43,10 +43,8 @@ public final class Constants {
     // Encoder ticks per rotation = 1024, 90 degrees is equal to 1/4 of a rotation.
     public static final int ENCODER_DISTANCE_TO_90DEG = 1024 / 4;
 
-    public static final int HOPPER_PORT = 1;
+    public static final int LOADER_PORT = 6;
     public static final double HOPPER_SPEED = 0.6;
-
-    public static final int TOWER_PORT = 2;
 
     public static final double TURRET_CENTERED = 16;
     public static final double TURRET_END = 19;
