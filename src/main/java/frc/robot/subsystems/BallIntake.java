@@ -18,11 +18,11 @@ public class BallIntake extends SubsystemBase {
 
   // Inputs the ball a full speed backwards.
   public void inputBall() {
-    succ.set(ControlMode.PercentOutput, 0.6);
+    succ.set(ControlMode.PercentOutput, 0.8);
   };
 
   public void outputBall(){
-    succ.set(ControlMode.PercentOutput, -0.6);
+    succ.set(ControlMode.PercentOutput, -0.8);
   }
 
   // Stops spinning the motor.

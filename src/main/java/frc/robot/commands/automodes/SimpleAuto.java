@@ -14,6 +14,7 @@ import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DriveStraight.Mode;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.StopShooting;
 import frc.robot.commands.TurretStraight;
 import frc.robot.sensors.Limelight;
 import frc.robot.subsystems.Arm;
@@ -41,6 +42,7 @@ public class SimpleAuto extends SequentialCommandGroup {
         new LoadBall(ballLoader),
         new Shoot(shooter)
       ).withTimeout(5),
+      new StopShooting(shooter),
       new DriveStraight(driveTrain, Mode.TIME, 5, -0.3)
     );
   }
