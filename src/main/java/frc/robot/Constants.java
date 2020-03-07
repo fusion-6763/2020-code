@@ -36,8 +36,8 @@ public final class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final int INTAKE_ARM_SOLENOID_PORT_L = 1;
-    public static final int INTAKE_ARM_SOLENOID_PORT_R = 2;
+    public static final int INTAKE_ARM_SOLENOID_PORT_OUT = 1;
+    public static final int INTAKE_ARM_SOLENOID_PORT_IN = 2;
     public static final int INTAKE_SUCC_PORT = 3;
 
     // Encoder ticks per rotation = 1024, 90 degrees is equal to 1/4 of a rotation.
