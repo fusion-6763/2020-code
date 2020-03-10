@@ -18,18 +18,16 @@ import frc.robot.sensors.Limelight.LightMode;
 import frc.robot.subsystems.Turret;
 
 public class Aim extends SequentialCommandGroup {
-  public Aim(Turret turret, Limelight limelight){
-    super(
-      new InstantCommand(() -> limelight.setLights(LightMode.ON)),
-      new WaitCommand(0.3),
-      new RawAim(turret, limelight),
-      new InstantCommand(() -> limelight.setLights(LightMode.DEFAULT))
-    );
+  public Aim(Turret turret, Limelight limelight) {
+    super(new InstantCommand(() -> limelight.setLights(LightMode.ON)), new WaitCommand(0.3),
+        new RawAim(turret, limelight), new InstantCommand(() -> limelight.setLights(LightMode.DEFAULT)));
   }
 
-  static private class RawAim extends CommandBase{
+  static private class RawAim extends CommandBase {
     private final Turret _turret;
     private final Limelight _limelight;
+    private int ticksLockedOn = 0;
+    private int TICKS_AIMED_DESIRED = 17;
 
     /**
      * Creates a new Aim.
@@ -52,10 +50,13 @@ public class Aim extends SequentialCommandGroup {
     public void execute() {
       if (_limelight.getX() < 0) {
         _turret.set(0.04);
+        ticksLockedOn = 0;
       } else if (_limelight.getX() > 0) {
         _turret.set(-0.04);
+        ticksLockedOn = 0;
       } else {
         _turret.set(0);
+        ticksLockedOn++;
       }
     }
 
@@ -70,15 +71,19 @@ public class Aim extends SequentialCommandGroup {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-      if (_turret.getEncoder() <= 0 && _limelight.getX() > 0) {
-        System.out.println("Too far right");
+      // TODO: Use TURRET_END
+      /*
+       * if (_turret.getEncoder() <= 0 && _limelight.getX() > 0) {
+       * System.out.println("Too far right");
+       * 
+       * return true; } else if (_turret.getEncoder() >= TURRET_END &&
+       * _limelight.getX() < 0) { System.out.println("Too far left");
+       * 
+       * return true; } else if (_limelight.getX() > -2 && _limelight.getX() < 2) {
+       * return true; } else { return false; } }
+       */
 
-        return true;
-      } else if (_turret.getEncoder() >= TURRET_END && _limelight.getX() < 0) {
-        System.out.println("Too far left");
-
-        return true;
-      } else if (_limelight.getX() > -2 && _limelight.getX() < 2) {
+      if (ticksLockedOn >= TICKS_AIMED_DESIRED) {
         return true;
       } else {
         return false;
