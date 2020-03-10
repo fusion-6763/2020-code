@@ -8,6 +8,8 @@ import static frc.robot.Constants.ShooterConstants.SHOOTER_PORT2;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.sensors.Limelight;
@@ -22,7 +24,12 @@ public class Shooter extends SubsystemBase {
 
   public Shooter(final Limelight limelight) {
     _limelight = limelight;
-    setDefaultCommand(new RunCommand(this::neutral, this));
+    setDefaultCommand(
+      new RunCommand(() -> {
+        neutral();
+        System.out.println("Shooter Default");
+      }, this)
+    );
   }
 
   // Launches that ball at full speed forwards.

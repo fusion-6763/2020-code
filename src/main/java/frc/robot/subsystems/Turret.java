@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.ShooterConstants.TURRET_PORT;
+import static frc.robot.Constants.IntakeConstants.TURRET_END;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
