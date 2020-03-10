@@ -36,13 +36,12 @@ public class SimpleAuto extends SequentialCommandGroup {
     // super(new FooCommand(), new BarCommand());
     super(
       new TurretStraight(turret),
-      new Aim(turret, limelight),
-      new Shoot(shooter).withTimeout(0.5),
+      new Aim(turret, limelight, false).withTimeout(1),
       new ParallelCommandGroup(
-        new LoadBall(ballLoader),
-        new Shoot(shooter)
-      ).withTimeout(5),
-      new StopShooting(shooter),
+        new LoadBall(ballLoader).withTimeout(5),
+        new Shoot(shooter).withTimeout(5),
+        new Aim(turret, limelight, true).withTimeout(5)
+      ),
       new DriveStraight(driveTrain, Mode.TIME, 5, -0.3)
     );
   }

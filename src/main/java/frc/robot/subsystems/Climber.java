@@ -10,17 +10,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
   // The spark that operates the motor.
-  private final DoubleSolenoid piston = new DoubleSolenoid(CLIMBER_SOLENOID_PORT_OUT, CLIMBER_SOLENOID_PORT_IN);
+  //TODO
+  //private final DoubleSolenoid piston = new DoubleSolenoid(CLIMBER_SOLENOID_PORT_OUT, CLIMBER_SOLENOID_PORT_IN);
 
   public Climber(){
   }
 
   public void up() {
-    piston.set(Value.kForward);
+    //piston.set(Value.kForward);
   }
 
   public void down() {
-    piston.set(Value.kReverse);
+    //piston.set(Value.kReverse);
   }
 
   @Override

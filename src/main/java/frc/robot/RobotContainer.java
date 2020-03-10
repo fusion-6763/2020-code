@@ -109,7 +109,7 @@ public class RobotContainer {
 
     _trigger.whenHeld(
       new ParallelCommandGroup(
-        new Aim(_turret, _limelight),
+        new Aim(_turret, _limelight, true), // mark made me do it
         new Shoot(_shooter)
       )
     ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));
@@ -117,14 +117,7 @@ public class RobotContainer {
     _topButton2.whenHeld(new LoadBall(_ballLoader));
     _topButton3.whenHeld(new UnloadBall(_ballLoader));
 
-    _topButton1.whenPressed(
-      new SequentialCommandGroup(
-        new InstantCommand(() -> _limelight.setLights(LightMode.ON)),
-        new WaitCommand(0.3),
-        new Aim(_turret, _limelight),
-        new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT))
-      )
-    );
+    _topButton1.whenPressed(new Aim(_turret, _limelight, false));
 
     _7.whenHeld(new RunCommand(()-> _shooter.speed(0.7), _shooter));
     _8.whenHeld(new RunCommand(() -> _shooter.speed(0.75), _shooter));

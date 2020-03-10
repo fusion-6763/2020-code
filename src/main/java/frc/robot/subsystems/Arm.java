@@ -10,17 +10,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
   // The spark that operates the motor.
-  private final DoubleSolenoid arm = new DoubleSolenoid(INTAKE_ARM_SOLENOID_PORT_OUT, INTAKE_ARM_SOLENOID_PORT_IN);
+  //TODO
+  //private final DoubleSolenoid arm = new DoubleSolenoid(INTAKE_ARM_SOLENOID_PORT_OUT, INTAKE_ARM_SOLENOID_PORT_IN);
 
   public Arm() {
   }
 
   public void armUp() {
-    arm.set(Value.kReverse);
+    //arm.set(Value.kReverse);
   }
 
   public void armDown() {
-    arm.set(Value.kForward);
+    //arm.set(Value.kForward);
   }
 
   @Override

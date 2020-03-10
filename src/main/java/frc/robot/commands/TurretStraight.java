@@ -35,10 +35,10 @@ public class TurretStraight extends CommandBase {
   @Override
   public void execute() {
     if(_turret.getEncoder() < TURRET_CENTERED - 1){
-      _turret.set(0.1);
+      _turret.set(0.07);
     }
     else if(_turret.getEncoder() > TURRET_CENTERED + 1){
-      _turret.set(-0.1);
+      _turret.set(-0.07);
     }
   }
 

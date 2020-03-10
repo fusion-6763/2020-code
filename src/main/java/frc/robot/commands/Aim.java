@@ -18,9 +18,22 @@ import frc.robot.sensors.Limelight.LightMode;
 import frc.robot.subsystems.Turret;
 
 public class Aim extends SequentialCommandGroup {
-  public Aim(Turret turret, Limelight limelight) {
-    super(new InstantCommand(() -> limelight.setLights(LightMode.ON)), new WaitCommand(0.3),
-        new RawAim(turret, limelight), new InstantCommand(() -> limelight.setLights(LightMode.DEFAULT)));
+  private Limelight _limelight;
+
+  public Aim(Turret turret, Limelight limelight, boolean infinite) {
+    super(
+      new InstantCommand(() -> limelight.setLights(LightMode.ON)),
+      new WaitCommand(0.3),
+      infinite ? new RawAim(turret, limelight).perpetually() : new RawAim(turret, limelight)
+    );
+
+    _limelight = limelight;
+  }
+
+  public void end(boolean interrupted) {
+    _limelight.setLights(LightMode.DEFAULT);
+
+    super.end(interrupted);
   }
 
   static private class RawAim extends CommandBase {
@@ -48,14 +61,16 @@ public class Aim extends SequentialCommandGroup {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-      if (_limelight.getX() < 0) {
-        _turret.set(0.04);
+      double turretSpeed = 0;
+
+      turretSpeed = _limelight.getX() * 0.004;
+      _turret.set(-turretSpeed);
+
+      if (_limelight.getX() < -3) {
         ticksLockedOn = 0;
-      } else if (_limelight.getX() > 0) {
-        _turret.set(-0.04);
+      } else if (_limelight.getX() > 3) {
         ticksLockedOn = 0;
       } else {
-        _turret.set(0);
         ticksLockedOn++;
       }
     }
@@ -82,6 +97,8 @@ public class Aim extends SequentialCommandGroup {
        * return true; } else if (_limelight.getX() > -2 && _limelight.getX() < 2) {
        * return true; } else { return false; } }
        */
+      System.out.println(_limelight.getX());
+      System.out.println(ticksLockedOn);
 
       if (ticksLockedOn >= TICKS_AIMED_DESIRED) {
         return true;
