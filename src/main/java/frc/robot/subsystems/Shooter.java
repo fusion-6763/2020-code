@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
     setDefaultCommand(
       new RunCommand(() -> {
         neutral();
-        System.out.println("Shooter Default");
+        //System.out.println("Shooter Default");
       }, this)
     );
   }

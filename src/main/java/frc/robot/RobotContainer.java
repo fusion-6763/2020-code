@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.Aim;
 import frc.robot.commands.Intake;
 import frc.robot.commands.LoadBall;
@@ -28,6 +29,7 @@ import frc.robot.commands.Outtake;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.UnloadBall;
+import frc.robot.commands.automodes.MediumAuto;
 import frc.robot.commands.automodes.SimpleAuto;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
@@ -47,12 +49,13 @@ import frc.robot.subsystems.Turret;
  * scheduler calls). Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+
 public class RobotContainer {
   private final XboxController _driverController = new XboxController(DRIVER_PORT);
   private final JoystickButton _xButton = new JoystickButton(_driverController, XboxController.Button.kX.value);
   private final JoystickButton _leftBumper = new JoystickButton(_driverController, XboxController.Button.kBumperLeft.value);
   private final JoystickButton _rightBumper = new JoystickButton(_driverController, XboxController.Button.kBumperRight.value);
-
 
   private final Joystick _shooterController = new Joystick(SHOOTER_PORT);
   private final JoystickButton _trigger = new JoystickButton(_shooterController, 1);
@@ -114,10 +117,13 @@ public class RobotContainer {
       )
     ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));
 
+
+    //_topButton1.whenPressed(new Aim(_turret, _limelight, false));
+    _topButton0.whenHeld(new RunCommand(() -> _turret.set(0.07), _turret));
+    _topButton1.whenHeld(new RunCommand(() -> _turret.set(-0.07), _turret));
+
     _topButton2.whenHeld(new LoadBall(_ballLoader));
     _topButton3.whenHeld(new UnloadBall(_ballLoader));
-
-    _topButton1.whenPressed(new Aim(_turret, _limelight, false));
 
     _7.whenHeld(new RunCommand(()-> _shooter.speed(0.7), _shooter));
     _8.whenHeld(new RunCommand(() -> _shooter.speed(0.75), _shooter));
@@ -148,7 +154,7 @@ public class RobotContainer {
       return new JustDriveAuto(_driveTrain);
     }*/
 
-    return new SimpleAuto(_arm, _driveTrain, _shooter, _ballLoader, _limelight, _turret);
+    return new MediumAuto(_arm, _driveTrain, _shooter, _ballLoader, _limelight, _turret);
   }
 
   public Command getTeleopCommand() {
