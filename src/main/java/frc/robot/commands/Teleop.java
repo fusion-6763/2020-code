@@ -17,17 +17,16 @@ import frc.robot.subsystems.Turret;
 import java.awt.*;  
 import java.awt.event.*; 
 
-public class Teleop extends CommandBase implements KeyListener{
+public class Teleop extends CommandBase{
   private XboxController _driveStick;
   private DriveTrain _myRobot;
   private Turret _turret;
   private Joystick _operatorController;
   private Arm _arm;
 
-  private boolean forward = false;
-  private boolean backward = false;
-  private boolean left = false;
-  private boolean right = false;
+  private double forwardMaxSpeed = 0.5;
+  private double turnMaxSpeed = 0.5;
+  private double rTriggerForwardMaxSpeed = 0.8;
 
   /**
    * Creates a new Teleop.
@@ -47,23 +46,24 @@ public class Teleop extends CommandBase implements KeyListener{
   @Override
   public void initialize() {
   }
-//wwwwwwwwwwwwwwwwwwwwwwwwww
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     
     System.out.println(_driveStick.getRawAxis(3));
     //System.out.println(_driveStick.getPOV());
-    if (_driveStick.getRawAxis(3) > 0.3) {
-      _myRobot.drive(-_driveStick.getRawAxis(3)*0.8, 0);
+    if (_driveStick.getRawAxis(3) > 0.3) { //Right trigger is super speed!
+      _myRobot.drive(-_driveStick.getRawAxis(3)*rTriggerForwardMaxSpeed, 0);
+    }
+    else if (_driveStick.getRawAxis(2) > 0.3){ //Left trigger does donuts!
+      _myRobot.drive(-_driveStick.getRawAxis(2)*forwardMaxSpeed, -_driveStick.getRawAxis(2)*turnMaxSpeed);
     }
     else if (_driveStick.getRawButton(2)){ //Reverses robot driving if button is pressed. Button 2 = B
-      _myRobot.drive(-_driveStick.getRawAxis(1)*0.5, _driveStick.getRawAxis(0)*0.5);
+      _myRobot.drive(-_driveStick.getRawAxis(1)*forwardMaxSpeed, _driveStick.getRawAxis(0)*turnMaxSpeed);
     }
-    else{
-      _myRobot.drive(_driveStick.getRawAxis(1)*0.5, _driveStick.getRawAxis(0)*0.5);
+    else{ //Regular driving
+      _myRobot.drive(_driveStick.getRawAxis(1)*forwardMaxSpeed, _driveStick.getRawAxis(0)*turnMaxSpeed);
     }
-    //_myRobot.drive(forwardMove, 0);
   }
 
   // Called once the command ends or is interrupted.
@@ -75,25 +75,5 @@ public class Teleop extends CommandBase implements KeyListener{
   @Override
   public boolean isFinished() {
     return false;
-  }
-  @Override
-  public void keyPressed(KeyEvent arg0) {
-    String key = arg0.toString();
-    if (key == "w") 
-    {
-      forward = true;
-    }
-  }
-  @Override
-  public void keyTyped(KeyEvent arg0) {
-    
-  }
-  @Override
-  public void keyReleased(KeyEvent arg0) {
-    String key = arg0.toString();
-    if (key == "w") 
-    {
-      forward = false;
-    }
   }
 }
