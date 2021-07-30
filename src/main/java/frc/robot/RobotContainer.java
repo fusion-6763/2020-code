@@ -109,14 +109,13 @@ public class RobotContainer {
     //_xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
     _leftBumper.whenHeld(new Intake(_ballIntake));
     _rightBumper.whenHeld(new Outtake(_ballIntake));
-
     _trigger.whenHeld(
       new ParallelCommandGroup(
         new Aim(_turret, _limelight, true), // mark made me do it
         new Shoot(_shooter)
       )
     ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));
-
+    
 
     //_topButton1.whenPressed(new Aim(_turret, _limelight, false));
     _topButton0.whenHeld(new RunCommand(() -> _turret.set(0.07), _turret));
@@ -124,13 +123,13 @@ public class RobotContainer {
 
     _topButton2.whenHeld(new LoadBall(_ballLoader));
     _topButton3.whenHeld(new UnloadBall(_ballLoader));
-
+    /** 
     _7.whenHeld(new RunCommand(()-> _shooter.speed(0.7), _shooter));
     _8.whenHeld(new RunCommand(() -> _shooter.speed(0.75), _shooter));
     _9.whenHeld(new RunCommand(() -> _shooter.speed(0.8), _shooter));
     _10.whenHeld(new RunCommand(() -> _shooter.speed(0.85), _shooter));
     _11.whenHeld(new RunCommand(() -> _shooter.speed(0.9), _shooter));
-
+    */
     _12.whenPressed(new InstantCommand(_turret::resetEncoder));
   }
 

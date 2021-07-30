@@ -9,6 +9,11 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.IntakeConstants.TURRET_END;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -19,7 +24,6 @@ import frc.robot.subsystems.Turret;
 
 public class Aim extends SequentialCommandGroup {
   private Limelight _limelight;
-
   public Aim(Turret turret, Limelight limelight, boolean infinite) {
     super(
       new InstantCommand(() -> limelight.setLights(LightMode.ON)),
@@ -65,7 +69,6 @@ public class Aim extends SequentialCommandGroup {
 
       turretSpeed = _limelight.getX() * 0.004;
       _turret.set(-turretSpeed);
-
       if (_limelight.getX() < -3) {
         ticksLockedOn = 0;
       } else if (_limelight.getX() > 3) {
@@ -73,6 +76,7 @@ public class Aim extends SequentialCommandGroup {
       } else {
         ticksLockedOn++;
       }
+      System.out.println("heye");
     }
 
     // Called once the command ends or is interrupted.

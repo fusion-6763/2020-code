@@ -24,9 +24,9 @@ public class Teleop extends CommandBase{
   private Joystick _operatorController;
   private Arm _arm;
 
-  private double forwardMaxSpeed = 0.5;
+  private double forwardMaxSpeed = 0.4;
   private double turnMaxSpeed = 0.5;
-  private double rTriggerForwardMaxSpeed = 0.8;
+  private double rTriggerForwardMaxSpeed = 1;
 
   /**
    * Creates a new Teleop.
