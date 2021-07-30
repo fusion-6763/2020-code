@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
     setDefaultCommand(
       new RunCommand(() -> {
         neutral();
-        System.out.println("Shooter Default");
+        //System.out.println("Shooter Default");
       }, this)
     );
   }
@@ -48,7 +48,7 @@ public class Shooter extends SubsystemBase {
   };
 
   public void speed(final double motorSpeed) {
-    System.out.println("Yes");
+    //System.out.println("Yes");
     motor1.set(-motorSpeed);
     motor2.set(motorSpeed);
   }

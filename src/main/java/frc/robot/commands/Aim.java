@@ -97,8 +97,8 @@ public class Aim extends SequentialCommandGroup {
        * return true; } else if (_limelight.getX() > -2 && _limelight.getX() < 2) {
        * return true; } else { return false; } }
        */
-      System.out.println(_limelight.getX());
-      System.out.println(ticksLockedOn);
+      //System.out.println(_limelight.getX());
+      //System.out.println(ticksLockedOn);
 
       if (ticksLockedOn >= TICKS_AIMED_DESIRED) {
         return true;

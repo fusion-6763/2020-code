@@ -11,6 +11,7 @@ import static frc.robot.Constants.CameraConstants.CHAMELEON_CAMERA_NAME;
 import static frc.robot.Constants.ControllerConstants.DRIVER_PORT;
 import static frc.robot.Constants.ControllerConstants.SHOOTER_PORT;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -29,6 +30,7 @@ import frc.robot.commands.Shoot;
 import frc.robot.commands.Teleop;
 import frc.robot.commands.UnloadBall;
 import frc.robot.commands.automodes.SimpleAuto;
+import frc.robot.commands.automodes.*;
 import frc.robot.sensors.ChameleonVision;
 import frc.robot.sensors.DriveCamera;
 import frc.robot.sensors.Limelight;
@@ -134,21 +136,22 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    /*double mode = NetworkTableInstance.getDefault().getTable("frcdashboard").getEntry("auto").getDouble(-1);
-
+    //double mode = NetworkTableInstance.getDefault().getTable("frcdashboard").getEntry("auto").getDouble(-1);
+    int mode = 2;
     if(mode == 1){
       // SimpleAuto
-      return new SimpleAuto(_driveTrain, _shooter, _hopper, _tower, _limelight, _turret);
+      return new SimpleAuto(_arm, _driveTrain, _shooter, _ballLoader, _limelight, _turret);
     }
     else if(mode == 2){
       // SideAuto
-      return new SideAuto(_driveTrain, _shooter, _ballIntake, _hopper, _tower, _turret, _limelight, _arm);
+      // Just kidding its medium now lolololol
+      return new MediumAuto(_arm, _driveTrain, _shooter, _ballLoader, _limelight, _turret);
+      // return new SideAuto(_driveTrain, _shooter, _ballIntake, _hopper, _tower, _turret, _limelight, _arm);
     }
     else{
       return new JustDriveAuto(_driveTrain);
-    }*/
+    }
 
-    return new SimpleAuto(_arm, _driveTrain, _shooter, _ballLoader, _limelight, _turret);
   }
 
   public Command getTeleopCommand() {

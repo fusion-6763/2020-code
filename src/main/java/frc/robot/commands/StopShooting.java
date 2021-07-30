@@ -33,7 +33,7 @@ public class StopShooting extends CommandBase {
   @Override
   public void execute() {
     _shooter.neutral();
-    System.out.println("Stopping shooting");
+    //System.out.println("Stopping shooting");
   }
 
   // Called once the command ends or is interrupted.

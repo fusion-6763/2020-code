@@ -38,7 +38,7 @@ public class Shoot extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     _shooter.neutral();
-    System.out.println("Stopped shooting (maybe)");
+    //System.out.println("Stopped shooting (maybe)");
   }
 
   // Returns true when the command should end.
