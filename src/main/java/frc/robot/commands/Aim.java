@@ -62,13 +62,14 @@ public class Aim extends SequentialCommandGroup {
     @Override
     public void execute() {
       double turretSpeed = 0;
+      _limelight.setDriverMode(false);
 
-      turretSpeed = _limelight.getX() * 0.004;
+      turretSpeed = _limelight.getX() * 0.005;
       _turret.set(-turretSpeed);
 
-      if (_limelight.getX() < -3) {
+      if (_limelight.getX() < -.5) {
         ticksLockedOn = 0;
-      } else if (_limelight.getX() > 3) {
+      } else if (_limelight.getX() > .5) {
         ticksLockedOn = 0;
       } else {
         ticksLockedOn++;

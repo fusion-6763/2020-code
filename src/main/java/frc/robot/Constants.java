@@ -38,7 +38,7 @@ public final class Constants {
   public static final class IntakeConstants {
     public static final int INTAKE_ARM_SOLENOID_PORT_OUT = 1;
     public static final int INTAKE_ARM_SOLENOID_PORT_IN = 2;
-    public static final int INTAKE_SUCC_PORT = 3;
+    public static final int INTAKE_SUCC_PORT = 9;
 
     // Encoder ticks per rotation = 1024, 90 degrees is equal to 1/4 of a rotation.
     public static final int ENCODER_DISTANCE_TO_90DEG = 1024 / 4;
@@ -64,14 +64,16 @@ public final class Constants {
     public static final int SHOOTER_PORT1 = 7;
     public static final int SHOOTER_PORT2 = 8;
     public static final int TURRET_PORT = 5;
-    public static final int MAX_NEO_RPM = 5700;
+    public static final int MAX_NEO_RPM = 5676;
     public static final double POWER_PORT_HEIGHT_FT = 8.1875;
     public static final double ROBOT_HEIGHT_FT = 2;
-    public static final double LIMELIGHT_ANGLE = 45;
+    public static final double LIMELIGHT_ANGLE = 22;
     public static final double SHOOTER_ANGLE = 45;
-    public static final double ROLLER_DIAMETER_FT = 0.25;
+    public static final double ROLLER_DIAMETER_FT = 0.5;
     public static final double INNER_PORT_DEPTH_FT = 2.4375;
-    public static final double DISTANCE_OFFSET_FT = INNER_PORT_DEPTH_FT + 2;
+    //public static final double DISTANCE_OFFSET_FT = INNER_PORT_DEPTH_FT + 2;
+    //Distance from limelight to shooter
+    public static final double DISTANCE_OFFSET_FT = 1;
     public static final double GRAVITY_FT_SEC_2 = 32.174;
 
     // tx: Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)

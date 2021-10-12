@@ -15,6 +15,7 @@ import static frc.robot.Constants.ShooterConstants.ROBOT_HEIGHT_FT;
 import static frc.robot.Constants.ShooterConstants.ROLLER_DIAMETER_FT;
 import static frc.robot.Constants.ShooterConstants.SHOOTER_ANGLE;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -33,6 +34,7 @@ public class Limelight implements INetworkTablesTrackingCamera {
   }
 
   public double getY() {
+    SmartDashboard.putNumber("Limelight Y", table.getEntry("ty").getDouble(0));
     return table.getEntry("ty").getDouble(0);
   }
 
@@ -42,7 +44,9 @@ public class Limelight implements INetworkTablesTrackingCamera {
 
   public double getDistance() {
     final double targetAngle = getY();
-    return (POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT) / Math.tan(LIMELIGHT_ANGLE + targetAngle);
+    SmartDashboard.putNumber("Distance To Target",
+        (POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT) / Math.tan(LIMELIGHT_ANGLE + targetAngle));
+    return Math.abs((POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT) / Math.tan(LIMELIGHT_ANGLE + targetAngle));
   }
 
   /**
@@ -58,18 +62,69 @@ public class Limelight implements INetworkTablesTrackingCamera {
    * @return the initial velocity of the ball required to reach the target.
    */
   public double getVelocity() {
-    final double x = getDistance() + DISTANCE_OFFSET_FT;
+    final double xFeet = getDistance() + DISTANCE_OFFSET_FT;
     // final double tanA = Math.tan(SHOOTER_ANGLE);
     // final double cosA = Math.cos(SHOOTER_ANGLE);
     // final double numerator = 2 * ((x * tanA) + ROBOT_HEIGHT_FT -
     // POWER_PORT_HEIGHT_FT);
     // final double denominator = (cosA * cosA) * (x * x) * GRAVITY_FT_SEC_2;
     // return Math.sqrt(numerator / denominator);
-    return Math.sqrt((x * GRAVITY_FT_SEC_2) / Math.sin(2 * SHOOTER_ANGLE));
+
+    // System.out.println(x);
+    // System.out.println(x * GRAVITY_FT_SEC_2);
+    // System.out.println(Math.sin(2 * SHOOTER_ANGLE));
+    // System.out.println(Math.sqrt((x * GRAVITY_FT_SEC_2) / Math.sin(2 *
+    // SHOOTER_ANGLE)));
+    // System.out.println("-----------");
+
+    // return Math.sqrt((x * GRAVITY_FT_SEC_2) / Math.sin(2 * SHOOTER_ANGLE));
+
+    //final double gFeet = 32.17; // gravity // 9.81
+    // final double x = 49; // target x // x is defined above
+    //final double yFeet = (POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT); // target y
+    //final double o = 45; // launch angle
+
+    // CHANGE VARIABLES FROM FEET TO METERS
+    // final double feetInAMeter = 3.28084;
+    // final double gMeters = gFeet / feetInAMeter;
+    // final double yMeters = yFeet / feetInAMeter;
+    // final double xMeters = xFeet / feetInAMeter;
+
+    // final double vMeters = (Math.sqrt(gMeters) * Math.sqrt(xMeters) *
+    // Math.sqrt((Math.tan(o)*Math.tan(o))+1)) / Math.sqrt(2 * Math.tan(o) - (2 *
+    // gMeters * yMeters) / xMeters); // velocity
+    // final double v = vMeters * feetInAMeter;
+    // System.out.println(v);
+
+    final double a = 2;
+
+    // All measurements in feet or degrees
+    final double launchAngle = SHOOTER_ANGLE; // a
+    final double distanceToTarget = 20000; // d
+    final double distanceToWall = getDistance() + DISTANCE_OFFSET_FT; // R | Distance to bottom of target
+    final double limelightAngle = LIMELIGHT_ANGLE; // B
+    final double targetHeight = (POWER_PORT_HEIGHT_FT - ROBOT_HEIGHT_FT); // h
+    final double gravity = 32.17; // G
+
+    final double numerator = gravity * distanceToWall * distanceToWall;
+    final double denominator1 = ((distanceToWall * distanceToWall * distanceToWall)
+        - (3 * distanceToWall * targetHeight * targetHeight)
+            / ((distanceToWall * distanceToWall) + (targetHeight * targetHeight)))
+        * Math.sin(2) * launchAngle;
+    final double denominator2 = ((((3 * targetHeight * distanceToWall * distanceToWall) - (targetHeight * targetHeight))
+        / ((distanceToWall * distanceToWall) + (targetHeight * targetHeight))) * Math.cos(2) * launchAngle)
+        - targetHeight;
+    final double velocity = Math.sqrt(numerator / (denominator1 + denominator2));
+    SmartDashboard.putNumber("Target Velocity", velocity);
+
+    return velocity;
   }
 
   public double getRPM() {
     final double velocity = getVelocity();
+    // System.out.println(velocity);
+    // System.out.println(ROLLER_DIAMETER_FT * Math.PI);
+    // System.out.println(velocity / (ROLLER_DIAMETER_FT * Math.PI));
     return velocity / (ROLLER_DIAMETER_FT * Math.PI);
   }
 

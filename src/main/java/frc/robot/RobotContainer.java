@@ -15,6 +15,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -71,6 +72,13 @@ public class RobotContainer {
   private final JoystickButton _11 = new JoystickButton(_shooterController, 11);
   private final JoystickButton _12 = new JoystickButton(_shooterController, 12);
 
+  private final Joystick _guitarHero1 = new Joystick(4);
+  private final JoystickButton _GHGreen = new JoystickButton(_guitarHero1, 8);
+  private final JoystickButton _GHRed = new JoystickButton(_guitarHero1, 2);
+  private final JoystickButton _GHYellow = new JoystickButton(_guitarHero1, 1);
+  private final JoystickButton _GHBlue = new JoystickButton(_guitarHero1, 3);
+  private final JoystickButton _GHOrange = new JoystickButton(_guitarHero1, 4);
+
   private final DriveCamera _driveCamera = new DriveCamera();
   public final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
   public final Limelight _limelight = new Limelight();
@@ -109,6 +117,10 @@ public class RobotContainer {
     _leftBumper.whenHeld(new Intake(_ballIntake));
     _rightBumper.whenHeld(new Outtake(_ballIntake));
 
+    _GHGreen.whenHeld(new Intake(_ballIntake));
+    _GHBlue.whenHeld(new Outtake(_ballIntake));
+    
+
     _trigger.whenHeld(
       new ParallelCommandGroup(
         new Aim(_turret, _limelight, true), // mark made me do it
@@ -116,18 +128,22 @@ public class RobotContainer {
       )
     ).whenReleased(new InstantCommand(() -> _limelight.setLights(LightMode.DEFAULT)));
 
+    _topButton0.whenHeld(new RunCommand(() -> _turret.set(0.05), _turret));
+    _topButton1.whenHeld(new RunCommand(() -> _turret.set(-0.05), _turret));
+    //_topButton1.whenPressed(new Aim(_turret, _limelight, false));
     _topButton2.whenHeld(new LoadBall(_ballLoader));
     _topButton3.whenHeld(new UnloadBall(_ballLoader));
 
-    _topButton1.whenPressed(new Aim(_turret, _limelight, false));
+    
 
-    _7.whenHeld(new RunCommand(()-> _shooter.speed(0.7), _shooter));
-    _8.whenHeld(new RunCommand(() -> _shooter.speed(0.75), _shooter));
-    _9.whenHeld(new RunCommand(() -> _shooter.speed(0.8), _shooter));
-    _10.whenHeld(new RunCommand(() -> _shooter.speed(0.85), _shooter));
+    _7.whenHeld(new RunCommand(()-> _shooter.speed(0.3), _shooter));
+    _8.whenHeld(new RunCommand(() -> _shooter.speed(0.6), _shooter));
+    _9.whenHeld(new RunCommand(() -> _shooter.speed(0.7), _shooter));
+    _10.whenHeld(new RunCommand(() -> _shooter.speed(0.8), _shooter));
     _11.whenHeld(new RunCommand(() -> _shooter.speed(0.9), _shooter));
+    _12.whenHeld(new RunCommand(() -> _shooter.speed(1), _shooter));
 
-    _12.whenPressed(new InstantCommand(_turret::resetEncoder));
+    //_12.whenPressed(new InstantCommand(_turret::resetEncoder));
   }
 
   /**
@@ -137,6 +153,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     //double mode = NetworkTableInstance.getDefault().getTable("frcdashboard").getEntry("auto").getDouble(-1);
+    _limelight.setDriverMode(false);
     int mode = 2;
     if(mode == 1){
       // SimpleAuto
@@ -153,8 +170,7 @@ public class RobotContainer {
     }
 
   }
-
   public Command getTeleopCommand() {
-    return new Teleop(_driveTrain, _turret, _driverController, _shooterController, _arm);
+    return new Teleop(_driveTrain, _turret, _driverController, _shooterController, _arm, _limelight);
   }
 }

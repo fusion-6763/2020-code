@@ -39,13 +39,13 @@ public class MediumAuto extends SequentialCommandGroup {
       new DriveStraight(driveTrain, Mode.TIME, 1, 0.0),
       new ParallelCommandGroup(
         new DriveStraight(driveTrain, Mode.TIME, 2, 0.4),
-        new Shoot(shooter).withTimeout(2),
-        new TurretStraight(turret).withTimeout(2)
-      )
-      // new ParallelCommandGroup(
-      //   new LoadBall(ballLoader).withTimeout(5),
-      //   new Shoot(shooter).withTimeout(5)
-      // )
+        new Shoot(shooter).withTimeout(2)
+        //new TurretStraight(turret).withTimeout(2)
+      ),
+       new ParallelCommandGroup(
+         new LoadBall(ballLoader).withTimeout(5),
+         new Shoot(shooter).withTimeout(5)
+       )
     );
   }
 }
