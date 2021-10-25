@@ -51,37 +51,12 @@ public class Teleop extends CommandBase {
   @Override
   public void execute() {
     //_limelight.setDriverMode(true);
-    
-
-    double GHForward = 0;
-    double GHRotation = 0;
-    if (_guitarHero1.getPOV() == 225) {
-      GHForward = -0.6;
-    }
-    else if (_guitarHero1.getPOV() == 315) {
-      GHForward = 0.6;
-    }
-
-    if (_guitarHero1.getRawButton(1)) {
-      GHRotation = 0.5;
-    }
-    else if (_guitarHero1.getRawButton(2)) {
-      GHRotation = -0.5;
-    }
-    System.out.println(GHForward != 0 || GHRotation != 0);
-    SmartDashboard.putBoolean("GuitarUsed", GHForward != 0 || GHRotation != 0);
-    if (GHForward != 0 || GHRotation != 0) {
-      _myRobot.drive(GHForward, GHRotation);
-    }
-    else if (_driveStick.getRawButton(2)){ //Reverses robot driving if button is pressed. Button 2 = B
+    if (_driveStick.getRawButton(2)){ //Reverses robot driving if button is pressed. Button 2 = B
       _myRobot.drive(-_driveStick.getRawAxis(1)*0.8, _driveStick.getRawAxis(0)*0.5);
     }
     else if(_driveStick.getRawButton(5)){ // Left Bumper pressed = slow down
       _myRobot.drive(_driveStick.getRawAxis(1)*0.5, _driveStick.getRawAxis(0)*0.5);
     }
-    else if (_guitarHero1.getRawButton(4)){
-      _myRobot.drive(.8, 0);
-    } //star power
     else{
       _myRobot.drive(_driveStick.getRawAxis(1)*0.8, _driveStick.getRawAxis(0)*0.5);
     }

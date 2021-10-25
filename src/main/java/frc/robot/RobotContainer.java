@@ -72,13 +72,6 @@ public class RobotContainer {
   private final JoystickButton _11 = new JoystickButton(_shooterController, 11);
   private final JoystickButton _12 = new JoystickButton(_shooterController, 12);
 
-  private final Joystick _guitarHero1 = new Joystick(4);
-  private final JoystickButton _GHGreen = new JoystickButton(_guitarHero1, 8);
-  private final JoystickButton _GHRed = new JoystickButton(_guitarHero1, 2);
-  private final JoystickButton _GHYellow = new JoystickButton(_guitarHero1, 1);
-  private final JoystickButton _GHBlue = new JoystickButton(_guitarHero1, 3);
-  private final JoystickButton _GHOrange = new JoystickButton(_guitarHero1, 4);
-
   private final DriveCamera _driveCamera = new DriveCamera();
   public final ChameleonVision _ballTracker = new ChameleonVision(CHAMELEON_CAMERA_NAME);
   public final Limelight _limelight = new Limelight();
@@ -116,10 +109,6 @@ public class RobotContainer {
     //_xButton.whenPressed(new FindPowerCell(_driveTrain, _ballTracker, _driverController));
     _leftBumper.whenHeld(new Intake(_ballIntake));
     _rightBumper.whenHeld(new Outtake(_ballIntake));
-
-    _GHGreen.whenHeld(new Intake(_ballIntake));
-    _GHBlue.whenHeld(new Outtake(_ballIntake));
-    
 
     _trigger.whenHeld(
       new ParallelCommandGroup(
